@@ -1,0 +1,19 @@
+# Network Device CDP Crawler Configuration
+
+# Seed device to start the CDP crawl from
+seed_device: "192.168.1.1"
+
+# Device credentials
+credentials:
+  username: "admin"
+  password: "your_password_here"
+  device_type: "cisco_ios"  # Options: cisco_ios, cisco_nxos, cisco_xr, etc.
+
+# Optional settings
+settings:
+  max_depth: 5  # Maximum depth of CDP crawl
+  timeout: 20   # Connection timeout in seconds
+  exclude_hosts:
+    - "exampleswitch.stephen.com"
+    - "stephen.com" # Will exclude all devices on stephen.com domain
+  include_only: []   # List of hostnames or IPs to include (empty = include all) 

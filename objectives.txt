@@ -1,0 +1,48 @@
+CDP Crawler:
+Devices.py
+-   class for NetworkDevice logic
+-   calls connect. py so all device related logic is abstracted
+Crawler-py
+-  handles business logic of crawling.
+-   threaded workers
+-   queue system
+- uses abstracted logic from devices to connect etc
+Connect.py
+-   uses netmike to connect
+-   calls parser.py to sanitize/parse screenscraped data
+-   on first login, it will run show ver to get device information
+parser. py
+-  parses data using textfsm templates data.py
+
+data.py
+-  manages data, sql DB to store from devices "hostname", "ip", 'serial number', 'device type", "version", "platform", "rommon", "config_register", "mac_address", "uptime"
+- crawler will reference this to see if there is duplicate entry and lookup via hostname to see if this device has been crawled before so we do not do crawling loops
+Main point of script.
+Network crawler using threaded workers to crawl entire network using 'show cdp n' to gather more endpoints to crawl steps of crawler:
+start at queue of 1 which is the device we seed with
+login to device -› show version →> (to get device info) -> show cdp neighbors detail (to find next targets) store data in sal database. before each time we connect to a device we will see if it has already been crawled by using a relational DB this main loop will happen until every single item in queue is exhausted after last device is exhausted -> dump entire sal to csv
+/templates for textfs templates config yaml for base config
+
+
+hostnames will be the primary key in the database. 
+crawler will add network devices to the table and as object after logged in and done 'show version'
+crawler will only add the hostnames to the queue with a CLEANED hostname naming scheme site-xx-xx.fqdn(s/n) -> site-xx-xx for dns
+
+after crawler finishes:
+it will dump every hostname to serial number association as a CSV
+
+
+
+CLI Interface (main.py):
+- Provides user-friendly command-line interface
+- Commands:
+  - crawl: Start the network crawling process
+  - show-config: Display current configuration
+  - status: Show crawl database status
+- Features:
+  - Progress indicators
+  - Rich text formatting
+  - Configuration validation
+  - Error handling
+  - Summary tables
+  - Device status display
