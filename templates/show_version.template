@@ -5,4 +5,6 @@ Start
   ^.*cisco\s+${HARDWARE}\s+.*
   ^.*Processor\s+board\s+ID\s+${SERIAL}
   ^.*System\s+serial\s+number\s*:\s*${SERIAL}
+  ^.*\[°\s+${HARDWARE}\*\*\] -> Continue
+  ^.*\[°\s+${SERIAL}'\s*\] -> Continue
   ^. -> Record 

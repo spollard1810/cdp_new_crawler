@@ -26,6 +26,8 @@ class CommandParser:
         """Parse 'show version' command output"""
         try:
             self.logger.info(f"Starting to parse show version output")
+            self.logger.debug(f"Raw show version output: {show_version_output}")
+            
             parsed = self._parse_with_template(show_version_output, 'show_version')
             self.logger.info(f"Raw parsed output: {parsed}")
             
@@ -37,17 +39,13 @@ class CommandParser:
             result = parsed[0]
             self.logger.info(f"First parsed result: {result}")
             
+            # Extract hardware and serial from the result
+            hardware = result.get('HARDWARE', [''])[0] if isinstance(result.get('HARDWARE'), list) else result.get('HARDWARE', '')
+            serial = result.get('SERIAL', [''])[0] if isinstance(result.get('SERIAL'), list) else result.get('SERIAL', '')
+            
             parsed_info = {
-                'HOSTNAME': result[0],
-                'HARDWARE': [result[1]],  # Platform/model
-                'VERSION': result[2],
-                'SERIAL': [result[3]],
-                'UPTIME': result[4],
-                'SOFTWARE_IMAGE': result[5],
-                'RUNNING_IMAGE': result[6],
-                'CONFIG_REGISTER': result[7],
-                'MAC_ADDRESS': [result[8]] if result[8] else [],
-                'RELOAD_REASON': result[9]
+                'HARDWARE': [hardware] if hardware else [],
+                'SERIAL': [serial] if serial else []
             }
             
             self.logger.info(f"Final parsed info: {parsed_info}")
