@@ -100,29 +100,42 @@ class NetworkCrawler:
         
         try:
             # Connect to device
-            if not device.connect():
-                self.logger.error(f"Failed to connect to device {hostname}")
-                return []
+            self.logger.info(f"Connecting to device {hostname}")
+            device.connect()
             
             # Get device info from show version
+            self.logger.info(f"Getting device info from {hostname}")
             device_info = device.get_device_info()
-            if device_info:
-                # Clean hostname before storing
-                device_info['hostname'] = self._clean_hostname(device_info['hostname'])
-                self.db.add_device(device_info)
-                self.logger.info(f"Added device info for {hostname}")
+            if not device_info:
+                self.logger.error(f"Failed to get device info from {hostname}")
+                return []
+                
+            # Clean hostname before storing
+            device_info['hostname'] = self._clean_hostname(device_info['hostname'])
+            self.db.add_device(device_info)
+            self.logger.info(f"Added device info for {hostname}")
             
             # Get CDP neighbors
+            self.logger.info(f"Getting CDP neighbors from {hostname}")
             neighbors = device.get_cdp_neighbors()
+            if not neighbors:
+                self.logger.warning(f"No CDP neighbors found for {hostname}")
+                return []
+                
             self.logger.info(f"Found {len(neighbors)} neighbors for {hostname}")
             
             # Filter and add valid neighbors to queue
             valid_neighbors = []
             for neighbor in neighbors:
-                clean_neighbor = self._clean_hostname(neighbor)
+                if not isinstance(neighbor, dict) or 'hostname' not in neighbor:
+                    self.logger.warning(f"Invalid neighbor format: {neighbor}")
+                    continue
+                    
+                clean_neighbor = self._clean_hostname(neighbor['hostname'])
                 if self._should_process_hostname(clean_neighbor):
                     valid_neighbors.append(clean_neighbor)
                     self.db.add_to_queue(clean_neighbor)
+                    self.logger.debug(f"Added neighbor to queue: {clean_neighbor}")
             
             self.logger.info(f"Added {len(valid_neighbors)} valid neighbors to queue")
             return valid_neighbors
