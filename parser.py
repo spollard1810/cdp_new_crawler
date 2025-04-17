@@ -43,21 +43,11 @@ class CommandParser:
             hardware = ''
             serial = ''
             
-            # The format we're seeing is: ['Systems,', '*], ['C8300-2N25-4T2X', '*FLM28291000"']]
-            if len(result) >= 2:
-                # The second element contains both hardware and serial in a string
-                parts = result[1].split(',')
-                if len(parts) >= 2:
-                    # First part is hardware
-                    hardware = parts[0].strip('[]"* ')
-                    # Second part is serial
-                    serial = parts[1].strip('[]"* ')
-            
-            # If we didn't get the values from the split, try direct extraction
-            if not hardware and len(result) >= 2:
-                hardware = result[1].strip('[]"* ')
-            if not serial and len(result) >= 3:
-                serial = result[2].strip('[]"* ')
+            # The format we're seeing is: ['Systems,', ''], ['c8300-2n2s-4t2x', 'flm28288282']
+            if len(parsed) >= 2:
+                # The second element contains both hardware and serial
+                hardware = parsed[1][0] if len(parsed[1]) > 0 else ''
+                serial = parsed[1][1] if len(parsed[1]) > 1 else ''
             
             parsed_info = {
                 'HARDWARE': [hardware] if hardware else [],
