@@ -13,8 +13,20 @@ class DeviceConnection:
             'username': username,
             'password': password,
             'timeout': 20,  # Connection timeout in seconds
-            'session_log': None
+            'session_log': None,
+            'fast_cli': False,  # Disable fast_cli for more reliable connections
+            'global_delay_factor': 2,  # Increase delay factor for more reliable connections
         }
+        
+        # Add NX-OS specific parameters if device type is nxos
+        if device_type == 'cisco_nxos':
+            self.connection_params.update({
+                'global_delay_factor': 3,  # NX-OS often needs more time
+                'read_timeout_override': 30,  # Increase read timeout for NX-OS
+                'expect_string': r'#\s*$',  # NX-OS prompt pattern
+                'auto_connect': False,  # Don't auto connect, we'll do it manually
+            })
+            
         self.connection: Optional[ConnectHandler] = None
         
         # Configure logging
@@ -26,6 +38,17 @@ class DeviceConnection:
         self.logger.info(f"Attempting to connect to {self.hostname}")
         try:
             self.connection = ConnectHandler(**self.connection_params)
+            
+            # For NX-OS, we need to handle the initial connection differently
+            if self.connection_params['device_type'] == 'cisco_nxos':
+                self.logger.debug("Handling NX-OS specific connection setup")
+                # Send a newline to get the prompt
+                self.connection.write_channel("\n")
+                # Wait for the prompt
+                self.connection.find_prompt()
+                # Disable paging
+                self.connection.send_command("terminal length 0", expect_string=r'#\s*$')
+            
             self.logger.info(f"Successfully connected to {self.hostname}")
         except NetMikoTimeoutException:
             self.logger.error(f"Timeout connecting to {self.hostname}")
@@ -54,7 +77,16 @@ class DeviceConnection:
             
         self.logger.debug(f"Sending command to {self.hostname}: {command}")
         try:
-            output = self.connection.send_command(command)
+            # For NX-OS, use expect_string to handle the prompt
+            if self.connection_params['device_type'] == 'cisco_nxos':
+                output = self.connection.send_command(
+                    command,
+                    expect_string=r'#\s*$',
+                    read_timeout=30
+                )
+            else:
+                output = self.connection.send_command(command)
+                
             if "Invalid input" in output or "Incomplete command" in output:
                 self.logger.error(f"Invalid command for {self.hostname}: {command}")
                 raise ValueError(f"Invalid command: {command}")

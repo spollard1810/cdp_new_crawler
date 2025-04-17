@@ -61,13 +61,34 @@ class NetworkDevice:
         # Try hostname first
         try:
             self.logger.debug(f"Trying connection with hostname: {self.hostname}")
+            # First try with IOS
             self.connection = DeviceConnection(
                 hostname=self.hostname,
                 username=self.username,
                 password=self.password,
-                device_type=self.device_type
+                device_type='cisco_ios'
             )
             self.connection.connect()
+            
+            # Try to determine if this is actually an NX-OS device
+            try:
+                show_version = self.connection.send_command('show version')
+                if 'NX-OS' in show_version:
+                    self.logger.info(f"Detected NX-OS device: {self.hostname}")
+                    self.device_type = 'cisco_nxos'
+                    # Disconnect and reconnect with NX-OS parameters
+                    self.connection.disconnect()
+                    self.connection = DeviceConnection(
+                        hostname=self.hostname,
+                        username=self.username,
+                        password=self.password,
+                        device_type='cisco_nxos'
+                    )
+                    self.connection.connect()
+            except Exception as e:
+                self.logger.debug(f"Error checking device type: {str(e)}")
+                # Continue with IOS connection if we can't determine type
+                
             self.logger.info(f"Successfully connected to {self.hostname}")
             return
         except ConnectionError as e:
