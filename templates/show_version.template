@@ -7,5 +7,3 @@ Start
   ^.*System\s+serial\s+number\s*:\s*${SERIAL}
   ^.*\[°\s+${HARDWARE}\*\*\] -> Continue
   ^.*\[°\s+${SERIAL}'\s*\] -> Continue
-  ^.*${HARDWARE}\s+${SERIAL} -> Record
-  ^. -> Continue 
