@@ -2,11 +2,16 @@ import sqlite3
 from typing import Dict, List
 import csv
 from datetime import datetime
+import logging
 
 class DeviceDatabase:
     def __init__(self, db_path: str = 'network_devices.db'):
         self.db_path = db_path
         self._init_db()
+        
+        # Configure logging
+        self.logger = logging.getLogger(__name__)
+        self.logger.debug(f"Initialized DeviceDatabase with path: {db_path}")
 
     def _init_db(self):
         """Initialize the database with required tables"""
