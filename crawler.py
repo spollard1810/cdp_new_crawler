@@ -113,19 +113,21 @@ class NetworkCrawler:
                     self.logger.error(f"No management IP available for {hostname}, skipping")
                     return []
             
-            # Get device info from show version
+            # Step 1: Get device info from show version
             self.logger.info(f"Getting device info from {hostname}")
             device_info = device.get_device_info()
             if not device_info:
                 self.logger.error(f"Failed to get device info from {hostname}")
                 return []
                 
-            # Clean hostname before storing
+            # Step 2: Clean hostname before storing
             device_info['hostname'] = self._clean_hostname(device_info['hostname'])
+            
+            # Step 3: Store device in database
             self.db.add_device(device_info)
             self.logger.info(f"Added device info for {hostname}")
             
-            # Get CDP neighbors
+            # Step 4: Only after successful storage, get CDP neighbors
             self.logger.info(f"Getting CDP neighbors from {hostname}")
             neighbors = device.get_cdp_neighbors()
             if not neighbors:
@@ -134,7 +136,7 @@ class NetworkCrawler:
                 
             self.logger.info(f"Found {len(neighbors)} neighbors for {hostname}")
             
-            # Filter and add valid neighbors to queue
+            # Step 5: Process and add neighbors to queue
             valid_neighbors = []
             for neighbor in neighbors:
                 # Skip if not a valid neighbor dictionary

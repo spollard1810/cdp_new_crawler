@@ -1,18 +1,24 @@
-Value NEIGHBOR_NAME (\S+)
-Value PLATFORM (\S+)
-Value CAPABILITIES (.*)
+Value Required NEIGHBOR_NAME (\S+)
+Value MGMT_ADDRESS (\d+\.\d+\.\d+\.\d+|\S+\.\S+\.\S+)
+Value PLATFORM (.*?)
 Value NEIGHBOR_INTERFACE (\S+)
 Value LOCAL_INTERFACE (\S+)
-Value MGMT_ADDRESS (\S+)
-Value NEIGHBOR_DESCRIPTION (.*)
+Value NEIGHBOR_DESCRIPTION (.*?)
+Value CAPABILITIES (.+?)
 
 Start
   ^Device ID: ${NEIGHBOR_NAME}
-  ^Platform: ${PLATFORM},.*
-  ^Capabilities: ${CAPABILITIES}
+  ^Entry address\(es\)\s*:\s* -> ParseIP
+  ^Platform\s*:\s*${PLATFORM}\s*,\s*Capabilities\s*:\s*${CAPABILITIES}\s*$$
   ^Interface: ${LOCAL_INTERFACE},.*Port ID.*: ${NEIGHBOR_INTERFACE}
-  ^IP address: ${MGMT_ADDRESS}
-  ^Version\s*:
-  ^Cisco IOS Software.*
-  ^.*${NEIGHBOR_DESCRIPTION}
-  ^. -> Record 
+  ^Version\s*: -> GetVersion
+  ^Load\s+for\s+
+  ^Time\s+source\s+is
+
+ParseIP
+  ^.*IP address: ${MGMT_ADDRESS} -> Start
+  ^Platform\s*:\s*${PLATFORM}\s*,\s*Capabilities\s*:\s*${CAPABILITIES}\s*$$ -> Start
+  ^.* -> Start
+
+GetVersion
+  ^${NEIGHBOR_DESCRIPTION} -> Record Start 
