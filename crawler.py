@@ -10,15 +10,16 @@ from data import DeviceDatabase
 class NetworkCrawler:
     def __init__(self, seed_device: str, username: str, password: str, 
                  device_type: str = 'cisco_ios', max_workers: int = 5,
-                 excluded_hosts: List[str] = None, included_hosts: List[str] = None):
+                 exclude_hosts: List[str] = None, include_only: List[str] = None,
+                 db_path: str = 'network_devices.db'):
         self.seed_device = seed_device
         self.username = username
         self.password = password
         self.device_type = device_type
         self.max_workers = max_workers
-        self.excluded_hosts = excluded_hosts or []
-        self.included_hosts = included_hosts or []
-        self.db = DeviceDatabase()
+        self.exclude_hosts = exclude_hosts or []
+        self.include_only = include_only or []
+        self.db = DeviceDatabase(db_path)
         self.workers = []
         self.running = False
         
@@ -34,8 +35,8 @@ class NetworkCrawler:
         self.logger = logging.getLogger(__name__)
         
         self.logger.info(f"Initialized crawler with seed device: {seed_device}")
-        self.logger.info(f"Excluded hosts: {self.excluded_hosts}")
-        self.logger.info(f"Included hosts: {self.included_hosts}")
+        self.logger.info(f"Exclude hosts: {self.exclude_hosts}")
+        self.logger.info(f"Include only: {self.include_only}")
 
     def _clean_hostname(self, hostname: str) -> str:
         """Clean hostname to site-xx-xx format"""
@@ -55,10 +56,10 @@ class NetworkCrawler:
             self.logger.debug(f"Hostname {clean_hostname} already processed")
             return False
             
-        if clean_hostname in self.excluded_hosts:
+        if clean_hostname in self.exclude_hosts:
             self.logger.debug(f"Hostname {clean_hostname} is in excluded list")
             return False
-        if self.included_hosts and clean_hostname not in self.included_hosts:
+        if self.include_only and clean_hostname not in self.include_only:
             self.logger.debug(f"Hostname {clean_hostname} is not in included list")
             return False
         return True
