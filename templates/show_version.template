@@ -1,24 +1,10 @@
 Value HOSTNAME (\S+)
 Value HARDWARE (\S+)
-Value VERSION (\S+)
 Value SERIAL (\S+)
-Value UPTIME (.+)
-Value SOFTWARE_IMAGE (\S+)
-Value RUNNING_IMAGE (\S+)
-Value CONFIG_REGISTER (\S+)
-Value MAC_ADDRESS (\S+)
-Value RELOAD_REASON (.+)
 
 Start
-  ^.*uptime\s+is\s+${UPTIME}
-  ^.*System\s+image\s+file\s+is\s+"${SOFTWARE_IMAGE}"
-  ^.*ROM:\s+${RUNNING_IMAGE}
-  ^.*Configuration\s+register\s+is\s+${CONFIG_REGISTER}
-  ^.*Base\s+ethernet\s+MAC\s+Address\s*:\s*${MAC_ADDRESS}
-  ^.*System\s+restarted\s+at\s+${RELOAD_REASON}
-  ^.*${HOSTNAME}\s+uptime\s+is\s+${UPTIME}
+  ^.*${HOSTNAME}\s+uptime\s+is\s+.*
   ^.*cisco\s+${HARDWARE}\s+.*
-  ^.*Version\s+${VERSION}
   ^.*Processor\s+board\s+ID\s+${SERIAL}
   ^.*System\s+serial\s+number\s*:\s*${SERIAL}
   ^. -> Record 
