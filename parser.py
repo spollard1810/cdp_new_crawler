@@ -43,12 +43,10 @@ class CommandParser:
             hardware = ''
             serial = ''
             
-            # The format we're seeing is: ['Systems,', ''], ['c8300-2n2s-4t2x', 'flm28288282']
-            if len(parsed) >= 2:
-                # The second element contains both hardware and serial
-                if len(parsed[1]) >= 2:
-                    hardware = parsed[1][0]
-                    serial = parsed[1][1]
+            # The format we're seeing is: ['C8300-2N2S-4T2X', '*FLM273210MF*']
+            if len(result) >= 2:
+                hardware = result[0].strip('*')
+                serial = result[1].strip('*')
             
             # Create the parsed info dictionary with the values
             parsed_info = {
