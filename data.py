@@ -47,7 +47,7 @@ class DeviceDatabase:
             cursor = conn.cursor()
             
             cursor.execute('''
-                INSERT OR REPLACE INTO devices (
+                INSERT OR IGNORE INTO devices (
                     hostname, ip, serial_number, device_type, version,
                     platform, rommon, config_register, mac_address, uptime,
                     last_crawled
@@ -73,18 +73,24 @@ class DeviceDatabase:
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
+            # First check if device is already in queue
             cursor.execute('''
-                INSERT OR IGNORE INTO crawl_queue (hostname)
-                VALUES (?)
+                SELECT 1 FROM crawl_queue WHERE hostname = ?
             ''', (hostname,))
             
-            conn.commit()
+            if not cursor.fetchone():
+                cursor.execute('''
+                    INSERT INTO crawl_queue (hostname, processed)
+                    VALUES (?, 0)
+                ''', (hostname,))
+                conn.commit()
 
     def get_next_device(self) -> str:
         """Get the next unprocessed device from the queue"""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
+            # Get the oldest unprocessed device
             cursor.execute('''
                 SELECT hostname FROM crawl_queue
                 WHERE processed = 0
@@ -122,6 +128,36 @@ class DeviceDatabase:
             
             return cursor.fetchone() is not None
 
+    def get_queue_status(self) -> Dict:
+        """Get current status of the crawl queue"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            
+            # Get total count
+            cursor.execute('SELECT COUNT(*) FROM crawl_queue')
+            total = cursor.fetchone()[0]
+            
+            # Get pending count
+            cursor.execute('SELECT COUNT(*) FROM crawl_queue WHERE processed = 0')
+            pending = cursor.fetchone()[0]
+            
+            # Get processed count
+            cursor.execute('SELECT COUNT(*) FROM crawl_queue WHERE processed = 1')
+            processed = cursor.fetchone()[0]
+            
+            return {
+                'total': total,
+                'pending': pending,
+                'processed': processed
+            }
+
+    def clear_queue(self):
+        """Clear the queue table"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute('DELETE FROM crawl_queue')
+            conn.commit()
+
     def export_to_csv(self, output_path: str):
         """Export device information to CSV"""
         with sqlite3.connect(self.db_path) as conn:
@@ -137,24 +173,4 @@ class DeviceDatabase:
             with open(output_path, 'w', newline='') as csvfile:
                 writer = csv.writer(csvfile)
                 writer.writerow(columns)
-                writer.writerows(rows)
-
-    def get_queue_status(self) -> Dict:
-        """Get current status of the crawl queue"""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            
-            cursor.execute('''
-                SELECT 
-                    COUNT(*) as total,
-                    SUM(CASE WHEN processed = 0 THEN 1 ELSE 0 END) as pending,
-                    SUM(CASE WHEN processed = 1 THEN 1 ELSE 0 END) as processed
-                FROM crawl_queue
-            ''')
-            
-            result = cursor.fetchone()
-            return {
-                'total': result[0],
-                'pending': result[1],
-                'processed': result[2]
-            } 
+                writer.writerows(rows) 
