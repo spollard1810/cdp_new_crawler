@@ -9,12 +9,13 @@ from data import DeviceDatabase
 
 class NetworkCrawler:
     def __init__(self, seed_device: str, username: str, password: str, 
-                 device_type: str = 'cisco_ios', excluded_hosts: List[str] = None, 
-                 included_hosts: List[str] = None):
+                 device_type: str = 'cisco_ios', max_workers: int = 5,
+                 excluded_hosts: List[str] = None, included_hosts: List[str] = None):
         self.seed_device = seed_device
         self.username = username
         self.password = password
         self.device_type = device_type
+        self.max_workers = max_workers
         self.excluded_hosts = excluded_hosts or []
         self.included_hosts = included_hosts or []
         self.db = DeviceDatabase()
@@ -62,9 +63,9 @@ class NetworkCrawler:
             return False
         return True
 
-    def start(self, num_workers: int = 4):
+    def start(self):
         """Start the crawler with the specified number of worker threads"""
-        self.logger.info(f"Starting crawler with {num_workers} workers")
+        self.logger.info(f"Starting crawler with {self.max_workers} workers")
         self.running = True
         
         # Clear any existing queue
@@ -79,7 +80,7 @@ class NetworkCrawler:
             return
         
         # Start worker threads
-        for i in range(num_workers):
+        for i in range(self.max_workers):
             worker = threading.Thread(target=self._worker, name=f"Worker-{i}")
             worker.daemon = True
             worker.start()
