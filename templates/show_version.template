@@ -1,9 +1,7 @@
-Value HOSTNAME (\S+)
 Value HARDWARE (\S+)
 Value SERIAL (\S+)
 
 Start
-  ^.*${HOSTNAME}\s+uptime\s+is\s+.*
   ^.*cisco\s+${HARDWARE}\s+.*
   ^.*Processor\s+board\s+ID\s+${SERIAL}
   ^.*System\s+serial\s+number\s*:\s*${SERIAL}
