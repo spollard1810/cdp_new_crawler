@@ -163,14 +163,37 @@ class DeviceDatabase:
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
+            # Get all devices with their information
             cursor.execute('''
-                SELECT * FROM devices
+                SELECT 
+                    hostname,
+                    ip,
+                    serial_number,
+                    device_type,
+                    version,
+                    platform,
+                    rommon,
+                    config_register,
+                    mac_address,
+                    uptime,
+                    last_crawled
+                FROM devices
+                ORDER BY hostname
             ''')
             
+            # Get column names
             columns = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
             
+            # Write to CSV
             with open(output_path, 'w', newline='') as csvfile:
                 writer = csv.writer(csvfile)
+                
+                # Write header
                 writer.writerow(columns)
-                writer.writerows(rows) 
+                
+                # Write data rows
+                for row in rows:
+                    # Convert any None values to empty strings
+                    processed_row = [str(value) if value is not None else '' for value in row]
+                    writer.writerow(processed_row) 
