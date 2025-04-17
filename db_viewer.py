@@ -25,13 +25,7 @@ def get_devices(db_path: str) -> List[Dict]:
                     hostname,
                     ip,
                     serial_number,
-                    device_type,
-                    version,
                     platform,
-                    rommon,
-                    config_register,
-                    mac_address,
-                    uptime,
                     last_crawled
                 FROM devices
                 ORDER BY hostname
@@ -55,8 +49,6 @@ def display_devices(devices: List[Dict]):
     table.add_column("Hostname", style="cyan")
     table.add_column("IP", style="green")
     table.add_column("Serial", style="magenta")
-    table.add_column("Type", style="blue")
-    table.add_column("Version", style="yellow")
     table.add_column("Platform", style="red")
     table.add_column("Last Crawled", style="white")
     
@@ -66,8 +58,6 @@ def display_devices(devices: List[Dict]):
             device['hostname'] or '',
             device['ip'] or '',
             device['serial_number'] or '',
-            device['device_type'] or '',
-            device['version'] or '',
             device['platform'] or '',
             device['last_crawled'] or ''
         )

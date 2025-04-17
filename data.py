@@ -19,19 +19,13 @@ class DeviceDatabase:
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
-            # Create devices table
+            # Create devices table with only essential fields
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS devices (
                     hostname TEXT PRIMARY KEY,
                     ip TEXT,
                     serial_number TEXT,
-                    device_type TEXT,
-                    version TEXT,
                     platform TEXT,
-                    rommon TEXT,
-                    config_register TEXT,
-                    mac_address TEXT,
-                    uptime TEXT,
                     last_crawled TIMESTAMP
                 )
             ''')
@@ -69,25 +63,13 @@ class DeviceDatabase:
                         UPDATE devices SET
                             ip = COALESCE(?, ip),
                             serial_number = COALESCE(?, serial_number),
-                            device_type = COALESCE(?, device_type),
-                            version = COALESCE(?, version),
                             platform = COALESCE(?, platform),
-                            rommon = COALESCE(?, rommon),
-                            config_register = COALESCE(?, config_register),
-                            mac_address = COALESCE(?, mac_address),
-                            uptime = COALESCE(?, uptime),
                             last_crawled = ?
                         WHERE hostname = ?
                     ''', (
                         device_info.get('ip'),
                         device_info.get('serial_number'),
-                        device_info.get('device_type'),
-                        device_info.get('version'),
                         device_info.get('platform'),
-                        device_info.get('rommon'),
-                        device_info.get('config_register'),
-                        device_info.get('mac_address'),
-                        device_info.get('uptime'),
                         datetime.now(),
                         device_info.get('hostname')
                     ))
@@ -97,21 +79,13 @@ class DeviceDatabase:
                     self.logger.info(f"Inserting new device {device_info.get('hostname')} into database")
                     cursor.execute('''
                         INSERT INTO devices (
-                            hostname, ip, serial_number, device_type, version,
-                            platform, rommon, config_register, mac_address, uptime,
-                            last_crawled
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            hostname, ip, serial_number, platform, last_crawled
+                        ) VALUES (?, ?, ?, ?, ?)
                     ''', (
                         device_info.get('hostname'),
                         device_info.get('ip'),
                         device_info.get('serial_number'),
-                        device_info.get('device_type'),
-                        device_info.get('version'),
                         device_info.get('platform'),
-                        device_info.get('rommon'),
-                        device_info.get('config_register'),
-                        device_info.get('mac_address'),
-                        device_info.get('uptime'),
                         datetime.now()
                     ))
                     self.logger.info(f"Successfully inserted new device: {device_info.get('hostname')}")
@@ -245,13 +219,7 @@ class DeviceDatabase:
                     hostname,
                     ip,
                     serial_number,
-                    device_type,
-                    version,
                     platform,
-                    rommon,
-                    config_register,
-                    mac_address,
-                    uptime,
                     last_crawled
                 FROM devices
                 ORDER BY hostname

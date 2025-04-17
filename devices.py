@@ -115,24 +115,16 @@ class NetworkDevice:
         """Get basic device information"""
         self.logger.info(f"Getting device info from {self.hostname}")
         try:
+            # Get version info which includes serial and model
             show_version = self.send_command('show version')
-            self.logger.debug(f"Raw show version output for {self.hostname}: {show_version}")
-            self.logger.debug(f"Parsing show version output for {self.hostname}")
             version_info = self.parser.parse_show_version(show_version)
-            self.logger.debug(f"Parsed version info: {version_info}")
             
-            # Format the device info for inventory
+            # Format the device info for inventory - only essential fields
             device_info = {
-                'hostname': version_info.get('HOSTNAME', self.hostname),
+                'hostname': self.hostname,  # Use the hostname we already have
                 'ip': self.mgmt_ip,
                 'serial_number': version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else '',
-                'device_type': self.device_type,
-                'version': version_info.get('VERSION', ''),
                 'platform': version_info.get('HARDWARE', [''])[0] if version_info.get('HARDWARE') else '',
-                'rommon': version_info.get('RUNNING_IMAGE', ''),
-                'config_register': version_info.get('CONFIG_REGISTER', ''),
-                'mac_address': version_info.get('MAC_ADDRESS', [''])[0] if version_info.get('MAC_ADDRESS') else '',
-                'uptime': version_info.get('UPTIME', ''),
                 'last_crawled': datetime.now().isoformat()
             }
             
