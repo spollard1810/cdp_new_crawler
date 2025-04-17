@@ -2,13 +2,19 @@ import threading
 import queue
 import logging
 import traceback
+import re
 from typing import Dict, List
 from devices import NetworkDevice
 from data import DeviceDatabase
 
 class NetworkCrawler:
-    def __init__(self, seed_device: str, excluded_hosts: List[str] = None, included_hosts: List[str] = None):
+    def __init__(self, seed_device: str, username: str, password: str, 
+                 device_type: str = 'cisco_ios', excluded_hosts: List[str] = None, 
+                 included_hosts: List[str] = None):
         self.seed_device = seed_device
+        self.username = username
+        self.password = password
+        self.device_type = device_type
         self.excluded_hosts = excluded_hosts or []
         self.included_hosts = included_hosts or []
         self.db = DeviceDatabase()
@@ -30,13 +36,29 @@ class NetworkCrawler:
         self.logger.info(f"Excluded hosts: {self.excluded_hosts}")
         self.logger.info(f"Included hosts: {self.included_hosts}")
 
+    def _clean_hostname(self, hostname: str) -> str:
+        """Clean hostname to site-xx-xx format"""
+        # Extract site-xx-xx pattern from FQDN
+        match = re.match(r'^(site-\d+-\d+)', hostname)
+        if match:
+            return match.group(1)
+        return hostname
+
     def _should_process_hostname(self, hostname: str) -> bool:
         """Check if a hostname should be processed"""
-        if hostname in self.excluded_hosts:
-            self.logger.debug(f"Hostname {hostname} is in excluded list")
+        # Clean the hostname first
+        clean_hostname = self._clean_hostname(hostname)
+        
+        # Check if already processed
+        if self.db.is_device_known(clean_hostname):
+            self.logger.debug(f"Hostname {clean_hostname} already processed")
             return False
-        if self.included_hosts and hostname not in self.included_hosts:
-            self.logger.debug(f"Hostname {hostname} is not in included list")
+            
+        if clean_hostname in self.excluded_hosts:
+            self.logger.debug(f"Hostname {clean_hostname} is in excluded list")
+            return False
+        if self.included_hosts and clean_hostname not in self.included_hosts:
+            self.logger.debug(f"Hostname {clean_hostname} is not in included list")
             return False
         return True
 
@@ -48,9 +70,13 @@ class NetworkCrawler:
         # Clear any existing queue
         self.db.clear_queue()
         
-        # Add seed device to queue
-        self.db.add_to_queue(self.seed_device)
-        self.logger.info(f"Added seed device {self.seed_device} to queue")
+        # Add seed device to queue if it should be processed
+        if self._should_process_hostname(self.seed_device):
+            self.db.add_to_queue(self.seed_device)
+            self.logger.info(f"Added seed device {self.seed_device} to queue")
+        else:
+            self.logger.warning(f"Seed device {self.seed_device} is excluded from processing")
+            return
         
         # Start worker threads
         for i in range(num_workers):
@@ -63,7 +89,12 @@ class NetworkCrawler:
     def _process_device(self, hostname: str) -> List[str]:
         """Process a single device and return list of discovered neighbors"""
         self.logger.info(f"Processing device: {hostname}")
-        device = NetworkDevice(hostname)
+        device = NetworkDevice(
+            hostname=hostname,
+            username=self.username,
+            password=self.password,
+            device_type=self.device_type
+        )
         
         try:
             # Connect to device
@@ -71,9 +102,11 @@ class NetworkCrawler:
                 self.logger.error(f"Failed to connect to device {hostname}")
                 return []
             
-            # Get device info
+            # Get device info from show version
             device_info = device.get_device_info()
             if device_info:
+                # Clean hostname before storing
+                device_info['hostname'] = self._clean_hostname(device_info['hostname'])
                 self.db.add_device(device_info)
                 self.logger.info(f"Added device info for {hostname}")
             
@@ -84,9 +117,10 @@ class NetworkCrawler:
             # Filter and add valid neighbors to queue
             valid_neighbors = []
             for neighbor in neighbors:
-                if self._should_process_hostname(neighbor):
-                    valid_neighbors.append(neighbor)
-                    self.db.add_to_queue(neighbor)
+                clean_neighbor = self._clean_hostname(neighbor)
+                if self._should_process_hostname(clean_neighbor):
+                    valid_neighbors.append(clean_neighbor)
+                    self.db.add_to_queue(clean_neighbor)
             
             self.logger.info(f"Added {len(valid_neighbors)} valid neighbors to queue")
             return valid_neighbors
@@ -106,6 +140,12 @@ class NetworkCrawler:
                 hostname = self.db.get_next_device()
                 if not hostname:
                     self.logger.debug("Queue is empty, waiting...")
+                    continue
+                
+                # Skip if device already processed
+                if self.db.is_device_known(hostname):
+                    self.logger.info(f"Device {hostname} already processed, skipping")
+                    self.db.mark_processed(hostname)
                     continue
                 
                 # Process device and get neighbors
