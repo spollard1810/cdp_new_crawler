@@ -1,0 +1,18 @@
+Value NEIGHBOR_NAME (\S+)
+Value PLATFORM (\S+)
+Value CAPABILITIES (.*)
+Value NEIGHBOR_INTERFACE (\S+)
+Value LOCAL_INTERFACE (\S+)
+Value MGMT_ADDRESS (\S+)
+Value NEIGHBOR_DESCRIPTION (.*)
+
+Start
+  ^Device ID: ${NEIGHBOR_NAME}
+  ^Platform: ${PLATFORM},.*
+  ^Capabilities: ${CAPABILITIES}
+  ^Interface: ${LOCAL_INTERFACE},.*Port ID.*: ${NEIGHBOR_INTERFACE}
+  ^IP address: ${MGMT_ADDRESS}
+  ^Version\s*:
+  ^Cisco IOS Software.*
+  ^.*${NEIGHBOR_DESCRIPTION}
+  ^. -> Record 
