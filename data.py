@@ -3,6 +3,7 @@ from typing import Dict, List
 import csv
 from datetime import datetime
 import logging
+import traceback
 
 class DeviceDatabase:
     def __init__(self, db_path: str = 'network_devices.db'):
@@ -59,9 +60,11 @@ class DeviceDatabase:
                 ''', (device_info.get('hostname'),))
                 
                 exists = cursor.fetchone() is not None
+                self.logger.info(f"Device {device_info.get('hostname')} exists in DB: {exists}")
                 
                 if exists:
                     # Update existing device
+                    self.logger.info(f"Updating device {device_info.get('hostname')} in database")
                     cursor.execute('''
                         UPDATE devices SET
                             ip = COALESCE(?, ip),
@@ -88,9 +91,10 @@ class DeviceDatabase:
                         datetime.now(),
                         device_info.get('hostname')
                     ))
-                    self.logger.info(f"Updated device: {device_info.get('hostname')}")
+                    self.logger.info(f"Successfully updated device: {device_info.get('hostname')}")
                 else:
                     # Insert new device
+                    self.logger.info(f"Inserting new device {device_info.get('hostname')} into database")
                     cursor.execute('''
                         INSERT INTO devices (
                             hostname, ip, serial_number, device_type, version,
@@ -110,11 +114,13 @@ class DeviceDatabase:
                         device_info.get('uptime'),
                         datetime.now()
                     ))
-                    self.logger.info(f"Added new device: {device_info.get('hostname')}")
+                    self.logger.info(f"Successfully inserted new device: {device_info.get('hostname')}")
                 
                 conn.commit()
+                self.logger.info(f"Database commit successful for device: {device_info.get('hostname')}")
         except sqlite3.Error as e:
-            self.logger.error(f"Database error: {str(e)}")
+            self.logger.error(f"Database error for device {device_info.get('hostname')}: {str(e)}")
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
             raise
 
     def add_to_queue(self, hostname: str):
