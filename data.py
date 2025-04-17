@@ -30,12 +30,13 @@ class DeviceDatabase:
                 )
             ''')
             
-            # Create crawl_queue table
+            # Create crawl_queue table with processing state
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS crawl_queue (
                     hostname TEXT PRIMARY KEY,
                     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    processed BOOLEAN DEFAULT 0
+                    processed BOOLEAN DEFAULT 0,
+                    processing BOOLEAN DEFAULT 0
                 )
             ''')
             
@@ -129,20 +130,27 @@ class DeviceDatabase:
                 conn.commit()
 
     def get_next_device(self) -> str:
-        """Get the next unprocessed device from the queue"""
+        """Get the next unprocessed device from the queue that isn't being processed"""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
-            # Get the oldest unprocessed device
+            # Get the oldest unprocessed and not processing device
             cursor.execute('''
                 SELECT hostname FROM crawl_queue
-                WHERE processed = 0
+                WHERE processed = 0 AND processing = 0
                 ORDER BY added_at ASC
                 LIMIT 1
             ''')
             
             result = cursor.fetchone()
             if result:
+                # Mark as processing
+                cursor.execute('''
+                    UPDATE crawl_queue
+                    SET processing = 1
+                    WHERE hostname = ?
+                ''', (result[0],))
+                conn.commit()
                 return result[0]
             return None
 
@@ -153,7 +161,21 @@ class DeviceDatabase:
             
             cursor.execute('''
                 UPDATE crawl_queue
-                SET processed = 1
+                SET processed = 1,
+                    processing = 0
+                WHERE hostname = ?
+            ''', (hostname,))
+            
+            conn.commit()
+
+    def release_device(self, hostname: str):
+        """Release a device from processing state if something went wrong"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            
+            cursor.execute('''
+                UPDATE crawl_queue
+                SET processing = 0
                 WHERE hostname = ?
             ''', (hostname,))
             

@@ -183,26 +183,34 @@ class NetworkCrawler:
                     self.logger.debug("Queue is empty, waiting...")
                     continue
                 
-                # Skip if device already processed
-                if self.db.is_device_known(hostname):
-                    self.logger.info(f"Device {hostname} already processed, skipping")
+                try:
+                    # Skip if device already processed
+                    if self.db.is_device_known(hostname):
+                        self.logger.info(f"Device {hostname} already processed, skipping")
+                        self.db.mark_processed(hostname)
+                        continue
+                    
+                    # Process device and get neighbors
+                    neighbors = self._process_device(hostname)
+                    
+                    # Mark device as processed
                     self.db.mark_processed(hostname)
+                    self.logger.info(f"Marked {hostname} as processed")
+                    
+                    # Log queue status
+                    status = self.db.get_queue_status()
+                    self.logger.info(f"Queue status: {status['pending']} pending, {status['processed']} processed")
+                    
+                except Exception as e:
+                    # If anything goes wrong, release the device from processing state
+                    self.logger.error(f"Error processing device {hostname}: {str(e)}")
+                    self.logger.error(f"Traceback: {traceback.format_exc()}")
+                    self.db.release_device(hostname)
                     continue
-                
-                # Process device and get neighbors
-                neighbors = self._process_device(hostname)
-                
-                # Mark device as processed
-                self.db.mark_processed(hostname)
-                self.logger.info(f"Marked {hostname} as processed")
-                
-                # Log queue status
-                status = self.db.get_queue_status()
-                self.logger.info(f"Queue status: {status['pending']} pending, {status['processed']} processed")
                 
             except Exception as e:
                 self.logger.error(f"Error in worker thread: {str(e)}")
-                self.logger.error(traceback.format_exc())
+                self.logger.error(f"Traceback: {traceback.format_exc()}")
 
     def stop(self):
         """Stop the crawler"""
