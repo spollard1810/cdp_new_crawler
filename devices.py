@@ -8,7 +8,8 @@ from datetime import datetime
 import threading
 
 class NetworkDevice:
-    def __init__(self, hostname: str, username: str, password: str, device_type: str = 'cisco_ios', mgmt_ip: str = None, worker_id: str = None):
+    def __init__(self, hostname: str, username: str, password: str, device_type: str = 'cisco_ios', 
+                 mgmt_ip: str = None, worker_id: str = None):
         self.hostname = self.clean_hostname(hostname)
         self.mgmt_ip = mgmt_ip  # Add management IP as fallback
         self.username = username
@@ -101,14 +102,6 @@ class NetworkDevice:
         """Establish connection to the device, trying hostname first then mgmt IP"""
         self.logger.info(f"Attempting to connect to {self.hostname}")
         
-        # Check if device is already connected
-        if self.db.is_device_connected(self.hostname):
-            raise ConnectionError(f"Device {self.hostname} is already being accessed by another worker")
-            
-        # Try to acquire connection lock
-        if not self.db.acquire_connection(self.hostname, self.worker_id):
-            raise ConnectionError(f"Failed to acquire connection lock for {self.hostname}")
-            
         try:
             # Try hostname first
             try:
@@ -141,8 +134,6 @@ class NetworkDevice:
                 self.connection.connect()
                 self.logger.info(f"Successfully connected to {self.mgmt_ip}")
         except Exception as e:
-            # Release connection lock if connection fails
-            self.db.release_connection(self.hostname, self.worker_id)
             raise
 
     def disconnect(self) -> None:
@@ -151,8 +142,6 @@ class NetworkDevice:
             self.logger.debug(f"Disconnecting from {self.hostname}")
             self.connection.disconnect()
             self.connection = None
-            # Release connection lock
-            self.db.release_connection(self.hostname, self.worker_id)
             self.logger.info(f"Disconnected from {self.hostname}")
 
     def send_command(self, command: str) -> str:
