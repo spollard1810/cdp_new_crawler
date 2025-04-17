@@ -25,13 +25,18 @@ class NetworkCrawler:
         
         # Configure logging
         logging.basicConfig(
-            level=logging.DEBUG,
+            level=logging.INFO,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
             handlers=[
                 logging.FileHandler('crawler.log'),
                 logging.StreamHandler()
             ]
         )
+        
+        # Set paramiko logging to WARNING level to reduce noise
+        logging.getLogger('paramiko').setLevel(logging.WARNING)
+        logging.getLogger('netmiko').setLevel(logging.WARNING)
+        
         self.logger = logging.getLogger(__name__)
         
         self.logger.info(f"Initialized crawler with seed device: {seed_device}")
