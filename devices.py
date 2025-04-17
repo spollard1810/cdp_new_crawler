@@ -116,8 +116,10 @@ class NetworkDevice:
         self.logger.info(f"Getting device info from {self.hostname}")
         try:
             show_version = self.send_command('show version')
+            self.logger.debug(f"Raw show version output for {self.hostname}: {show_version}")
             self.logger.debug(f"Parsing show version output for {self.hostname}")
             version_info = self.parser.parse_show_version(show_version)
+            self.logger.debug(f"Parsed version info: {version_info}")
             
             # Format the device info for inventory
             device_info = {
@@ -135,9 +137,9 @@ class NetworkDevice:
             }
             
             # Log the collected device info
-            self.logger.debug(f"Collected device info for {self.hostname}:")
+            self.logger.info(f"Collected device info for {self.hostname}:")
             for key, value in device_info.items():
-                self.logger.debug(f"  {key}: {value}")
+                self.logger.info(f"  {key}: {value}")
             
             return device_info
         except Exception as e:

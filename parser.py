@@ -2,10 +2,14 @@ import os
 from typing import Dict, List
 from textfsm import TextFSM
 import re
+import traceback
+import logging
 
 class CommandParser:
     def __init__(self, template_dir: str = 'templates'):
         self.template_dir = template_dir
+        self.logger = logging.getLogger(__name__)
+        self.logger.debug(f"Initialized CommandParser with template dir: {template_dir}")
 
     def _parse_with_template(self, command_output: str, template_name: str) -> List[Dict]:
         """Parse command output using a TextFSM template"""
@@ -21,14 +25,19 @@ class CommandParser:
     def parse_show_version(self, show_version_output: str) -> Dict:
         """Parse 'show version' command output"""
         try:
+            self.logger.info(f"Starting to parse show version output")
             parsed = self._parse_with_template(show_version_output, 'show_version')
+            self.logger.info(f"Raw parsed output: {parsed}")
+            
             if not parsed:
+                self.logger.warning("No data was parsed from show version output")
                 return {}
             
             # Get the first (and should be only) result
             result = parsed[0]
+            self.logger.info(f"First parsed result: {result}")
             
-            return {
+            parsed_info = {
                 'HOSTNAME': result[0],
                 'HARDWARE': [result[1]],  # Platform/model
                 'VERSION': result[2],
@@ -40,8 +49,12 @@ class CommandParser:
                 'MAC_ADDRESS': [result[8]] if result[8] else [],
                 'RELOAD_REASON': result[9]
             }
+            
+            self.logger.info(f"Final parsed info: {parsed_info}")
+            return parsed_info
         except Exception as e:
-            print(f"Error parsing show version: {str(e)}")
+            self.logger.error(f"Error parsing show version: {str(e)}")
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
             return {}
 
     def parse_cdp_neighbors(self, cdp_output: str) -> List[Dict]:
