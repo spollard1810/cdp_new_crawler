@@ -1,0 +1,9 @@
+Value HARDWARE (\S+)
+Value SERIAL (\S+)
+
+Start
+  ^.*cisco\s+${HARDWARE}\s+Chassis
+  ^.*Processor\s+board\s+ID\s+${SERIAL}
+  ^.*System\s+serial\s+number\s*:\s*${SERIAL}
+  ^.*\[°\s+${HARDWARE}\*\*\] -> Continue
+  ^.*\[°\s+${SERIAL}'\s*\] -> Continue 

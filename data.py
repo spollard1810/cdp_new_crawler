@@ -26,6 +26,7 @@ class DeviceDatabase:
                     ip TEXT,
                     serial_number TEXT,
                     platform TEXT,
+                    device_type TEXT,
                     last_crawled TIMESTAMP
                 )
             ''')
@@ -74,12 +75,14 @@ class DeviceDatabase:
                             ip = COALESCE(?, ip),
                             serial_number = COALESCE(?, serial_number),
                             platform = COALESCE(?, platform),
+                            device_type = COALESCE(?, device_type),
                             last_crawled = ?
                         WHERE hostname = ?
                     ''', (
                         device_info.get('ip'),
                         device_info.get('serial_number'),
                         device_info.get('platform'),
+                        device_info.get('device_type'),
                         datetime.now(),
                         device_info.get('hostname')
                     ))
@@ -89,13 +92,14 @@ class DeviceDatabase:
                     self.logger.info(f"Inserting new device {device_info.get('hostname')} into database")
                     cursor.execute('''
                         INSERT INTO devices (
-                            hostname, ip, serial_number, platform, last_crawled
-                        ) VALUES (?, ?, ?, ?, ?)
+                            hostname, ip, serial_number, platform, device_type, last_crawled
+                        ) VALUES (?, ?, ?, ?, ?, ?)
                     ''', (
                         device_info.get('hostname'),
                         device_info.get('ip'),
                         device_info.get('serial_number'),
                         device_info.get('platform'),
+                        device_info.get('device_type'),
                         datetime.now()
                     ))
                     self.logger.info(f"Successfully inserted new device: {device_info.get('hostname')}")

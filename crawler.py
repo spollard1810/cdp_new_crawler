@@ -159,11 +159,12 @@ class NetworkCrawler:
                     # Store both hostname and management IP for fallback
                     neighbor_info = {
                         'hostname': clean_neighbor,
-                        'mgmt_ip': neighbor.get('ip', '')  # Store the management IP for fallback
+                        'mgmt_ip': neighbor.get('ip', ''),  # Store the management IP for fallback
+                        'device_type': neighbor.get('device_type', self.device_type)  # Use detected type or fallback
                     }
                     valid_neighbors.append(neighbor_info)
                     self.db.add_to_queue(clean_neighbor)
-                    self.logger.debug(f"Added neighbor to queue: {clean_neighbor} (IP: {neighbor.get('ip', 'N/A')})")
+                    self.logger.debug(f"Added neighbor to queue: {clean_neighbor} (IP: {neighbor.get('ip', 'N/A')}, Type: {neighbor_info['device_type']})")
             
             # Step 5: Only after processing neighbors, add the device to DB
             self.db.add_device(device_info)

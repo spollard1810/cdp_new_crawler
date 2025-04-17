@@ -17,6 +17,7 @@ class NetworkDevice:
         self.connection = None
         self.parser = CommandParser()
         self.worker_id = worker_id or str(threading.get_ident())  # Use thread ID as worker ID if not provided
+        self.platform_info = {}  # Store platform-specific information
         
         # Configure logging
         self.logger = logging.getLogger(__name__)
@@ -56,6 +57,46 @@ class NetworkDevice:
         self.logger.debug(f"Checking if {platform} is an AP: {is_ap}")
         return is_ap
 
+    def detect_device_type(self, show_version_output: str) -> str:
+        """Detect the device type based on show version output"""
+        self.logger.info("Detecting device type from show version output")
+        
+        # Check for NX-OS
+        if 'NX-OS' in show_version_output:
+            self.logger.info("Detected NX-OS device")
+            return 'cisco_nxos'
+            
+        # Check for IOS-XE
+        if 'IOS-XE' in show_version_output or 'XE' in show_version_output:
+            self.logger.info("Detected IOS-XE device")
+            return 'cisco_xe'
+            
+        # Default to IOS
+        self.logger.info("Detected IOS device")
+        return 'cisco_ios'
+
+    def detect_device_type_from_cdp(self, cdp_output: str) -> str:
+        """Detect device type from CDP neighbor information"""
+        self.logger.info("Detecting device type from CDP output")
+        
+        # Check for NX-OS in platform or version
+        if 'NX-OS' in cdp_output or 'Nexus' in cdp_output:
+            self.logger.info("Detected NX-OS device from CDP")
+            return 'cisco_nxos'
+            
+        # Check for IOS-XE in platform or version
+        if 'IOS-XE' in cdp_output or 'XE' in cdp_output or 'Catalyst' in cdp_output:
+            self.logger.info("Detected IOS-XE device from CDP")
+            return 'cisco_xe'
+            
+        # Check for IOS in platform or version
+        if 'IOS' in cdp_output or 'Router' in cdp_output:
+            self.logger.info("Detected IOS device from CDP")
+            return 'cisco_ios'
+            
+        self.logger.warning("Could not determine device type from CDP")
+        return None
+
     def connect(self) -> None:
         """Establish connection to the device, trying hostname first then mgmt IP"""
         self.logger.info(f"Attempting to connect to {self.hostname}")
@@ -72,36 +113,18 @@ class NetworkDevice:
             # Try hostname first
             try:
                 self.logger.debug(f"Trying connection with hostname: {self.hostname}")
-                # First try with IOS
+                
+                # First try with the provided device type
                 self.connection = DeviceConnection(
                     hostname=self.hostname,
                     username=self.username,
                     password=self.password,
-                    device_type='cisco_ios'
+                    device_type=self.device_type
                 )
                 self.connection.connect()
-                
-                # Try to determine if this is actually an NX-OS device
-                try:
-                    show_version = self.connection.send_command('show version')
-                    if 'NX-OS' in show_version:
-                        self.logger.info(f"Detected NX-OS device: {self.hostname}")
-                        self.device_type = 'cisco_nxos'
-                        # Disconnect and reconnect with NX-OS parameters
-                        self.connection.disconnect()
-                        self.connection = DeviceConnection(
-                            hostname=self.hostname,
-                            username=self.username,
-                            password=self.password,
-                            device_type='cisco_nxos'
-                        )
-                        self.connection.connect()
-                except Exception as e:
-                    self.logger.debug(f"Error checking device type: {str(e)}")
-                    # Continue with IOS connection if we can't determine type
-                    
-                self.logger.info(f"Successfully connected to {self.hostname}")
+                self.logger.info(f"Successfully connected to {self.hostname} as {self.device_type}")
                 return
+                
             except ConnectionError as e:
                 self.logger.warning(f"Failed to connect to {self.hostname}: {str(e)}")
                 if not self.mgmt_ip:  # If no mgmt IP available, raise the original error
@@ -153,17 +176,32 @@ class NetworkDevice:
         """Get basic device information"""
         self.logger.info(f"Getting device info from {self.hostname}")
         try:
+            # First try to get CDP info to detect device type
+            try:
+                show_cdp = self.send_command('show cdp neighbors detail')
+                cdp_info = self.parser.parse_cdp_neighbors(show_cdp, self.device_type)
+                if cdp_info:
+                    # Use the first neighbor's info to detect device type
+                    first_neighbor = cdp_info[0]
+                    platform = first_neighbor.get('PLATFORM', '')
+                    version = first_neighbor.get('NEIGHBOR_DESCRIPTION', '')
+                    cdp_info_str = f"{platform} {version}"
+                    detected_type = self.detect_device_type_from_cdp(cdp_info_str)
+                    if detected_type and detected_type != self.device_type:
+                        self.logger.info(f"Detected {detected_type} from CDP, reconnecting with correct type")
+                        self.device_type = detected_type
+                        # Reconnect with correct type
+                        self.disconnect()
+                        self.connect()
+            except Exception as e:
+                self.logger.warning(f"Failed to get CDP info: {str(e)}")
+                # Continue with current device type if CDP fails
+            
             # Get version info which includes serial and model
             show_version = self.send_command('show version')
-            version_info = self.parser.parse_show_version(show_version)
             
-            # If parsing failed, try NX-OS format
-            if not version_info.get('HARDWARE') or not version_info.get('SERIAL'):
-                self.logger.info(f"Initial parsing failed, trying NX-OS format for {self.hostname}")
-                # Try NX-OS specific parsing
-                nxos_info = self._parse_nxos_version(show_version)
-                if nxos_info:
-                    version_info = nxos_info
+            # Parse based on device type using appropriate template
+            version_info = self.parser.parse_show_version(show_version, self.device_type)
             
             # Format the device info for inventory - only essential fields
             device_info = {
@@ -171,6 +209,7 @@ class NetworkDevice:
                 'ip': self.mgmt_ip,
                 'serial_number': version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else '',
                 'platform': version_info.get('HARDWARE', [''])[0] if version_info.get('HARDWARE') else '',
+                'device_type': self.device_type,
                 'last_crawled': datetime.now().isoformat()
             }
             
@@ -185,47 +224,13 @@ class NetworkDevice:
             self.logger.error(f"Traceback: {traceback.format_exc()}")
             raise
 
-    def _parse_nxos_version(self, show_version_output: str) -> Dict:
-        """Parse NX-OS show version output"""
-        try:
-            self.logger.info("Attempting NX-OS version parsing")
-            
-            # Initialize empty values
-            hardware = ''
-            serial = ''
-            
-            # Look for NX-OS specific patterns
-            hardware_match = re.search(r'cisco\s+(\S+)\s+Chassis', show_version_output)
-            if hardware_match:
-                hardware = hardware_match.group(1)
-            
-            serial_match = re.search(r'Processor\s+board\s+ID\s+(\S+)', show_version_output)
-            if serial_match:
-                serial = serial_match.group(1)
-            
-            # If we found both values, return them
-            if hardware and serial:
-                self.logger.info(f"Successfully parsed NX-OS version info: hardware={hardware}, serial={serial}")
-                return {
-                    'HARDWARE': [hardware],
-                    'SERIAL': [serial]
-                }
-            
-            self.logger.warning("Failed to parse NX-OS version info")
-            return {}
-            
-        except Exception as e:
-            self.logger.error(f"Error parsing NX-OS version: {str(e)}")
-            self.logger.error(f"Traceback: {traceback.format_exc()}")
-            return {}
-
     def get_cdp_neighbors(self) -> List[Dict]:
         """Get CDP neighbor information"""
         self.logger.info(f"Getting CDP neighbors from {self.hostname}")
         try:
             show_cdp = self.send_command('show cdp neighbors detail')
             self.logger.debug(f"Parsing CDP neighbors output for {self.hostname}")
-            neighbors = self.parser.parse_cdp_neighbors(show_cdp)
+            neighbors = self.parser.parse_cdp_neighbors(show_cdp, self.device_type)
             processed_neighbors = []
             
             for neighbor in neighbors:
@@ -236,6 +241,11 @@ class NetworkDevice:
                     continue
                     
                 platform = neighbor.pop('PLATFORM', '')
+                version = neighbor.pop('NEIGHBOR_DESCRIPTION', '')
+                
+                # Try to detect device type from CDP info
+                cdp_info = f"{platform} {version}"
+                detected_type = self.detect_device_type_from_cdp(cdp_info)
                 
                 # Skip phones - don't even add them to processed neighbors
                 if self.is_phone(platform):
@@ -250,7 +260,8 @@ class NetworkDevice:
                     'local_interface': neighbor.pop('LOCAL_INTERFACE', ''),
                     'platform': platform,
                     'capabilities': neighbor.pop('CAPABILITIES', ''),
-                    'version': neighbor.pop('NEIGHBOR_DESCRIPTION', '')
+                    'version': version,
+                    'device_type': detected_type or self.device_type  # Use detected type or fallback to current
                 }
                 
                 # If this is an access point, format it as a device for inventory
@@ -261,6 +272,7 @@ class NetworkDevice:
                         'hardware': [processed_neighbor['platform']],
                         'version': processed_neighbor['version'],
                         'ip': processed_neighbor['ip'],
+                        'device_type': processed_neighbor['device_type'],
                         'is_access_point': True,
                         'connected_to': {
                             'device': self.hostname,

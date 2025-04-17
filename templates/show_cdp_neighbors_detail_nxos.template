@@ -1,0 +1,19 @@
+Value Required NEIGHBOR_NAME (\S+)
+Value MGMT_ADDRESS (\d+\.\d+\.\d+\.\d+|\S+\.\S+\.\S+)
+Value PLATFORM (.*?)
+Value NEIGHBOR_INTERFACE (\S+)
+Value LOCAL_INTERFACE (\S+)
+Value NEIGHBOR_DESCRIPTION (.*?)
+Value CAPABILITIES (.+?)
+
+Start
+  ^Device ID: ${NEIGHBOR_NAME}
+  ^IP address: ${MGMT_ADDRESS}
+  ^Platform: ${PLATFORM},  Capabilities: ${CAPABILITIES}
+  ^Interface: ${LOCAL_INTERFACE},  Port ID \(outgoing port\): ${NEIGHBOR_INTERFACE}
+  ^Version : -> GetVersion
+  ^Load\s+for\s+
+  ^Time\s+source\s+is
+
+GetVersion
+  ^${NEIGHBOR_DESCRIPTION} -> Record Start 

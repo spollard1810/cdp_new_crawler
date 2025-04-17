@@ -18,13 +18,24 @@ class DeviceConnection:
             'global_delay_factor': 2,  # Increase delay factor for more reliable connections
         }
         
-        # Add NX-OS specific parameters if device type is nxos
+        # Add platform-specific parameters
         if device_type == 'cisco_nxos':
             self.connection_params.update({
                 'global_delay_factor': 3,  # NX-OS often needs more time
                 'read_timeout_override': 30,  # Increase read timeout for NX-OS
                 'expect_string': r'#\s*$',  # NX-OS prompt pattern
                 'auto_connect': False,  # Don't auto connect, we'll do it manually
+            })
+        elif device_type == 'cisco_xe':
+            self.connection_params.update({
+                'global_delay_factor': 2,
+                'read_timeout_override': 25,
+                'expect_string': r'#\s*$',  # IOS-XE prompt pattern
+            })
+        else:  # Default to IOS parameters
+            self.connection_params.update({
+                'global_delay_factor': 2,
+                'read_timeout_override': 20,
             })
             
         self.connection: Optional[ConnectHandler] = None
@@ -39,7 +50,7 @@ class DeviceConnection:
         try:
             self.connection = ConnectHandler(**self.connection_params)
             
-            # For NX-OS, we need to handle the initial connection differently
+            # Handle platform-specific connection setup
             if self.connection_params['device_type'] == 'cisco_nxos':
                 self.logger.debug("Handling NX-OS specific connection setup")
                 # Send a newline to get the prompt
@@ -48,6 +59,14 @@ class DeviceConnection:
                 self.connection.find_prompt()
                 # Disable paging
                 self.connection.send_command("terminal length 0", expect_string=r'#\s*$')
+            elif self.connection_params['device_type'] == 'cisco_xe':
+                self.logger.debug("Handling IOS-XE specific connection setup")
+                # Disable paging
+                self.connection.send_command("terminal length 0", expect_string=r'#\s*$')
+            else:  # Default to IOS setup
+                self.logger.debug("Handling IOS specific connection setup")
+                # Disable paging
+                self.connection.send_command("terminal length 0")
             
             self.logger.info(f"Successfully connected to {self.hostname}")
         except NetMikoTimeoutException:
@@ -77,14 +96,20 @@ class DeviceConnection:
             
         self.logger.debug(f"Sending command to {self.hostname}: {command}")
         try:
-            # For NX-OS, use expect_string to handle the prompt
+            # Handle platform-specific command sending
             if self.connection_params['device_type'] == 'cisco_nxos':
                 output = self.connection.send_command(
                     command,
                     expect_string=r'#\s*$',
                     read_timeout=30
                 )
-            else:
+            elif self.connection_params['device_type'] == 'cisco_xe':
+                output = self.connection.send_command(
+                    command,
+                    expect_string=r'#\s*$',
+                    read_timeout=25
+                )
+            else:  # Default to IOS command sending
                 output = self.connection.send_command(command)
                 
             if "Invalid input" in output or "Incomplete command" in output:
