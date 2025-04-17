@@ -99,9 +99,19 @@ class NetworkCrawler:
         )
         
         try:
-            # Connect to device
-            self.logger.info(f"Connecting to device {hostname}")
-            device.connect()
+            # First try connecting with hostname
+            try:
+                self.logger.info(f"Attempting to connect to {hostname} via hostname")
+                device.connect()
+            except ConnectionError as e:
+                self.logger.warning(f"Failed to connect to {hostname} via hostname: {str(e)}")
+                # If we have a management IP, try that as fallback
+                if device.mgmt_ip:
+                    self.logger.info(f"Attempting fallback connection to {hostname} via management IP: {device.mgmt_ip}")
+                    device.connect()  # This will use the management IP as fallback
+                else:
+                    self.logger.error(f"No management IP available for {hostname}, skipping")
+                    return []
             
             # Get device info from show version
             self.logger.info(f"Getting device info from {hostname}")
@@ -127,15 +137,27 @@ class NetworkCrawler:
             # Filter and add valid neighbors to queue
             valid_neighbors = []
             for neighbor in neighbors:
-                if not isinstance(neighbor, dict) or 'hostname' not in neighbor:
+                # Skip if not a valid neighbor dictionary
+                if not isinstance(neighbor, dict):
                     self.logger.warning(f"Invalid neighbor format: {neighbor}")
                     continue
                     
-                clean_neighbor = self._clean_hostname(neighbor['hostname'])
+                # Get and clean the hostname
+                neighbor_hostname = neighbor.get('hostname')
+                if not neighbor_hostname:
+                    self.logger.warning(f"Neighbor missing hostname: {neighbor}")
+                    continue
+                    
+                clean_neighbor = self._clean_hostname(neighbor_hostname)
                 if self._should_process_hostname(clean_neighbor):
-                    valid_neighbors.append(clean_neighbor)
+                    # Store both hostname and management IP for fallback
+                    neighbor_info = {
+                        'hostname': clean_neighbor,
+                        'mgmt_ip': neighbor.get('ip', '')  # Store the management IP for fallback
+                    }
+                    valid_neighbors.append(neighbor_info)
                     self.db.add_to_queue(clean_neighbor)
-                    self.logger.debug(f"Added neighbor to queue: {clean_neighbor}")
+                    self.logger.debug(f"Added neighbor to queue: {clean_neighbor} (IP: {neighbor.get('ip', 'N/A')})")
             
             self.logger.info(f"Added {len(valid_neighbors)} valid neighbors to queue")
             return valid_neighbors

@@ -151,6 +151,10 @@ class NetworkDevice:
             for neighbor in neighbors:
                 # Clean the hostname from CDP
                 neighbor_hostname = self.clean_hostname(neighbor.pop('NEIGHBOR_NAME', ''))
+                if not neighbor_hostname:
+                    self.logger.warning(f"Skipping neighbor with empty hostname")
+                    continue
+                    
                 platform = neighbor.pop('PLATFORM', '')
                 
                 # Skip phones - don't even add them to processed neighbors
@@ -187,6 +191,7 @@ class NetworkDevice:
                     processed_neighbor['device_info'] = ap_info
                 
                 processed_neighbors.append(processed_neighbor)
+                self.logger.debug(f"Processed neighbor: {neighbor_hostname}")
             
             self.logger.info(f"Found {len(processed_neighbors)} neighbors for {self.hostname}")
             return processed_neighbors
