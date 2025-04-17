@@ -97,6 +97,56 @@ class NetworkCrawler:
         self.is_running = False
         self.logger.info("Crawler completed")
 
+    def _process_device(self, hostname: str) -> List[str]:
+        """Process a single device and return list of discovered neighbors"""
+        self.logger.info(f"Processing device: {hostname}")
+        discovered_neighbors = []
+        
+        device = None
+        try:
+            # Create and connect to device
+            self.logger.debug(f"Creating device connection for {hostname}")
+            device = NetworkDevice(
+                hostname=hostname,
+                username=self.username,
+                password=self.password,
+                device_type=self.device_type
+            )
+            
+            self.logger.debug(f"Connecting to device {hostname}")
+            device.connect()
+            
+            # Get device information
+            self.logger.debug(f"Getting device info from {hostname}")
+            device_info = device.get_device_info()
+            self.logger.debug(f"Device info: {device_info}")
+            self.db.add_device(device_info)
+            
+            # Get CDP neighbors
+            self.logger.debug(f"Getting CDP neighbors from {hostname}")
+            neighbors = device.get_cdp_neighbors()
+            self.logger.debug(f"Found {len(neighbors)} neighbors")
+            
+            # Collect all valid neighbors
+            for neighbor in neighbors:
+                neighbor_hostname = neighbor.get('hostname')
+                if neighbor_hostname and self._should_process_hostname(neighbor_hostname):
+                    discovered_neighbors.append(neighbor_hostname)
+            
+            # Mark device as processed
+            self.logger.debug(f"Marking device {hostname} as processed")
+            self.db.mark_processed(hostname)
+            
+        except Exception as e:
+            self.logger.error(f"Error processing device {hostname}: {str(e)}")
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
+        finally:
+            if device:
+                self.logger.debug(f"Disconnecting from device {hostname}")
+                device.disconnect()
+        
+        return discovered_neighbors
+
     def _worker(self):
         """Worker thread that processes devices from the queue"""
         worker_name = threading.current_thread().name
@@ -111,57 +161,20 @@ class NetworkCrawler:
                     time.sleep(1)
                     continue
                 
-                self.logger.info(f"{worker_name}: Processing device: {hostname}")
-                
                 # Skip if device already processed
                 if self.db.is_device_known(hostname):
                     self.logger.info(f"{worker_name}: Device {hostname} already processed, skipping")
                     self.db.mark_processed(hostname)
                     continue
                 
-                device = None
-                try:
-                    # Create and connect to device
-                    self.logger.debug(f"{worker_name}: Creating device connection for {hostname}")
-                    device = NetworkDevice(
-                        hostname=hostname,
-                        username=self.username,
-                        password=self.password,
-                        device_type=self.device_type
-                    )
-                    
-                    self.logger.debug(f"{worker_name}: Connecting to device {hostname}")
-                    device.connect()
-                    
-                    # Get device information
-                    self.logger.debug(f"{worker_name}: Getting device info from {hostname}")
-                    device_info = device.get_device_info()
-                    self.logger.debug(f"{worker_name}: Device info: {device_info}")
-                    self.db.add_device(device_info)
-                    
-                    # Get CDP neighbors
-                    self.logger.debug(f"{worker_name}: Getting CDP neighbors from {hostname}")
-                    neighbors = device.get_cdp_neighbors()
-                    self.logger.debug(f"{worker_name}: Found {len(neighbors)} neighbors")
-                    
-                    # Add neighbors to queue if they should be processed
-                    for neighbor in neighbors:
-                        neighbor_hostname = neighbor.get('hostname')
-                        if neighbor_hostname and self._should_process_hostname(neighbor_hostname):
-                            self.logger.debug(f"{worker_name}: Adding neighbor to queue: {neighbor_hostname}")
-                            self.db.add_to_queue(neighbor_hostname)
-                    
-                    # Mark device as processed
-                    self.logger.debug(f"{worker_name}: Marking device {hostname} as processed")
-                    self.db.mark_processed(hostname)
-                    
-                except Exception as e:
-                    self.logger.error(f"{worker_name}: Error processing device {hostname}: {str(e)}")
-                    self.logger.error(f"{worker_name}: Traceback: {traceback.format_exc()}")
-                finally:
-                    if device:
-                        self.logger.debug(f"{worker_name}: Disconnecting from device {hostname}")
-                        device.disconnect()
+                # Process device and get discovered neighbors
+                discovered_neighbors = self._process_device(hostname)
+                
+                # Add all discovered neighbors to queue at once
+                if discovered_neighbors:
+                    self.logger.info(f"{worker_name}: Adding {len(discovered_neighbors)} neighbors to queue")
+                    for neighbor in discovered_neighbors:
+                        self.db.add_to_queue(neighbor)
             
             except Exception as e:
                 self.logger.error(f"{worker_name}: Worker error: {str(e)}")
