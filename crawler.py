@@ -100,7 +100,8 @@ class NetworkCrawler:
             hostname=hostname,
             username=self.username,
             password=self.password,
-            device_type=self.device_type
+            device_type=self.device_type,
+            worker_id=threading.current_thread().name  # Pass worker thread name as ID
         )
         
         try:

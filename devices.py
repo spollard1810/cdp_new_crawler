@@ -5,9 +5,10 @@ import re
 import logging
 import traceback
 from datetime import datetime
+import threading
 
 class NetworkDevice:
-    def __init__(self, hostname: str, username: str, password: str, device_type: str = 'cisco_ios', mgmt_ip: str = None):
+    def __init__(self, hostname: str, username: str, password: str, device_type: str = 'cisco_ios', mgmt_ip: str = None, worker_id: str = None):
         self.hostname = self.clean_hostname(hostname)
         self.mgmt_ip = mgmt_ip  # Add management IP as fallback
         self.username = username
@@ -15,6 +16,7 @@ class NetworkDevice:
         self.device_type = device_type
         self.connection = None
         self.parser = CommandParser()
+        self.worker_id = worker_id or str(threading.get_ident())  # Use thread ID as worker ID if not provided
         
         # Configure logging
         self.logger = logging.getLogger(__name__)
@@ -58,54 +60,67 @@ class NetworkDevice:
         """Establish connection to the device, trying hostname first then mgmt IP"""
         self.logger.info(f"Attempting to connect to {self.hostname}")
         
-        # Try hostname first
+        # Check if device is already connected
+        if self.db.is_device_connected(self.hostname):
+            raise ConnectionError(f"Device {self.hostname} is already being accessed by another worker")
+            
+        # Try to acquire connection lock
+        if not self.db.acquire_connection(self.hostname, self.worker_id):
+            raise ConnectionError(f"Failed to acquire connection lock for {self.hostname}")
+            
         try:
-            self.logger.debug(f"Trying connection with hostname: {self.hostname}")
-            # First try with IOS
-            self.connection = DeviceConnection(
-                hostname=self.hostname,
-                username=self.username,
-                password=self.password,
-                device_type='cisco_ios'
-            )
-            self.connection.connect()
-            
-            # Try to determine if this is actually an NX-OS device
+            # Try hostname first
             try:
-                show_version = self.connection.send_command('show version')
-                if 'NX-OS' in show_version:
-                    self.logger.info(f"Detected NX-OS device: {self.hostname}")
-                    self.device_type = 'cisco_nxos'
-                    # Disconnect and reconnect with NX-OS parameters
-                    self.connection.disconnect()
-                    self.connection = DeviceConnection(
-                        hostname=self.hostname,
-                        username=self.username,
-                        password=self.password,
-                        device_type='cisco_nxos'
-                    )
-                    self.connection.connect()
-            except Exception as e:
-                self.logger.debug(f"Error checking device type: {str(e)}")
-                # Continue with IOS connection if we can't determine type
+                self.logger.debug(f"Trying connection with hostname: {self.hostname}")
+                # First try with IOS
+                self.connection = DeviceConnection(
+                    hostname=self.hostname,
+                    username=self.username,
+                    password=self.password,
+                    device_type='cisco_ios'
+                )
+                self.connection.connect()
                 
-            self.logger.info(f"Successfully connected to {self.hostname}")
-            return
-        except ConnectionError as e:
-            self.logger.warning(f"Failed to connect to {self.hostname}: {str(e)}")
-            if not self.mgmt_ip:  # If no mgmt IP available, raise the original error
-                raise
-            
-            # Try mgmt IP as fallback
-            self.logger.debug(f"Trying fallback connection with mgmt IP: {self.mgmt_ip}")
-            self.connection = DeviceConnection(
-                hostname=self.mgmt_ip,  # Use IP instead of hostname
-                username=self.username,
-                password=self.password,
-                device_type=self.device_type
-            )
-            self.connection.connect()
-            self.logger.info(f"Successfully connected to {self.mgmt_ip}")
+                # Try to determine if this is actually an NX-OS device
+                try:
+                    show_version = self.connection.send_command('show version')
+                    if 'NX-OS' in show_version:
+                        self.logger.info(f"Detected NX-OS device: {self.hostname}")
+                        self.device_type = 'cisco_nxos'
+                        # Disconnect and reconnect with NX-OS parameters
+                        self.connection.disconnect()
+                        self.connection = DeviceConnection(
+                            hostname=self.hostname,
+                            username=self.username,
+                            password=self.password,
+                            device_type='cisco_nxos'
+                        )
+                        self.connection.connect()
+                except Exception as e:
+                    self.logger.debug(f"Error checking device type: {str(e)}")
+                    # Continue with IOS connection if we can't determine type
+                    
+                self.logger.info(f"Successfully connected to {self.hostname}")
+                return
+            except ConnectionError as e:
+                self.logger.warning(f"Failed to connect to {self.hostname}: {str(e)}")
+                if not self.mgmt_ip:  # If no mgmt IP available, raise the original error
+                    raise
+                
+                # Try mgmt IP as fallback
+                self.logger.debug(f"Trying fallback connection with mgmt IP: {self.mgmt_ip}")
+                self.connection = DeviceConnection(
+                    hostname=self.mgmt_ip,  # Use IP instead of hostname
+                    username=self.username,
+                    password=self.password,
+                    device_type=self.device_type
+                )
+                self.connection.connect()
+                self.logger.info(f"Successfully connected to {self.mgmt_ip}")
+        except Exception as e:
+            # Release connection lock if connection fails
+            self.db.release_connection(self.hostname, self.worker_id)
+            raise
 
     def disconnect(self) -> None:
         """Close the device connection"""
@@ -113,6 +128,8 @@ class NetworkDevice:
             self.logger.debug(f"Disconnecting from {self.hostname}")
             self.connection.disconnect()
             self.connection = None
+            # Release connection lock
+            self.db.release_connection(self.hostname, self.worker_id)
             self.logger.info(f"Disconnected from {self.hostname}")
 
     def send_command(self, command: str) -> str:

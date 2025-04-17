@@ -40,6 +40,16 @@ class DeviceDatabase:
                 )
             ''')
             
+            # Create active_connections table to track device connections
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS active_connections (
+                    hostname TEXT PRIMARY KEY,
+                    worker_id TEXT,
+                    connected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (hostname) REFERENCES devices(hostname)
+                )
+            ''')
+            
             conn.commit()
 
     def add_device(self, device_info: Dict):
@@ -240,4 +250,52 @@ class DeviceDatabase:
                 for row in rows:
                     # Convert any None values to empty strings
                     processed_row = [str(value) if value is not None else '' for value in row]
-                    writer.writerow(processed_row) 
+                    writer.writerow(processed_row)
+
+    def acquire_connection(self, hostname: str, worker_id: str) -> bool:
+        """Attempt to acquire a connection lock for a device"""
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                
+                # Try to insert the connection record
+                cursor.execute('''
+                    INSERT INTO active_connections (hostname, worker_id)
+                    VALUES (?, ?)
+                ''', (hostname, worker_id))
+                
+                conn.commit()
+                return True
+        except sqlite3.IntegrityError:
+            # Connection already exists
+            return False
+        except Exception as e:
+            self.logger.error(f"Error acquiring connection lock for {hostname}: {str(e)}")
+            return False
+
+    def release_connection(self, hostname: str, worker_id: str):
+        """Release a connection lock for a device"""
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                
+                cursor.execute('''
+                    DELETE FROM active_connections
+                    WHERE hostname = ? AND worker_id = ?
+                ''', (hostname, worker_id))
+                
+                conn.commit()
+        except Exception as e:
+            self.logger.error(f"Error releasing connection lock for {hostname}: {str(e)}")
+
+    def is_device_connected(self, hostname: str) -> bool:
+        """Check if a device is currently connected by any worker"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            
+            cursor.execute('''
+                SELECT 1 FROM active_connections
+                WHERE hostname = ?
+            ''', (hostname,))
+            
+            return cursor.fetchone() is not None 
