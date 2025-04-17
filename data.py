@@ -43,69 +43,73 @@ class DeviceDatabase:
 
     def add_device(self, device_info: Dict):
         """Add or update device information in the database"""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            
-            # First check if device exists
-            cursor.execute('''
-                SELECT 1 FROM devices WHERE hostname = ?
-            ''', (device_info.get('hostname'),))
-            
-            exists = cursor.fetchone() is not None
-            
-            if exists:
-                # Update existing device
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                
+                # First check if device exists
                 cursor.execute('''
-                    UPDATE devices SET
-                        ip = ?,
-                        serial_number = ?,
-                        device_type = ?,
-                        version = ?,
-                        platform = ?,
-                        rommon = ?,
-                        config_register = ?,
-                        mac_address = ?,
-                        uptime = ?,
-                        last_crawled = ?
-                    WHERE hostname = ?
-                ''', (
-                    device_info.get('ip'),
-                    device_info.get('serial_number'),
-                    device_info.get('device_type'),
-                    device_info.get('version'),
-                    device_info.get('platform'),
-                    device_info.get('rommon'),
-                    device_info.get('config_register'),
-                    device_info.get('mac_address'),
-                    device_info.get('uptime'),
-                    datetime.now(),
-                    device_info.get('hostname')
-                ))
-                print(f"Updated device: {device_info.get('hostname')}")
-            else:
-                # Insert new device
-                cursor.execute('''
-                    INSERT INTO devices (
-                        hostname, ip, serial_number, device_type, version,
-                        platform, rommon, config_register, mac_address, uptime,
-                        last_crawled
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ''', (
-                    device_info.get('hostname'),
-                    device_info.get('ip'),
-                    device_info.get('serial_number'),
-                    device_info.get('device_type'),
-                    device_info.get('version'),
-                    device_info.get('platform'),
-                    device_info.get('rommon'),
-                    device_info.get('config_register'),
-                    device_info.get('mac_address'),
-                    device_info.get('uptime'),
-                    datetime.now()
-                ))
-                print(f"Added new device: {device_info.get('hostname')}")
-            
-            conn.commit()
+                    SELECT 1 FROM devices WHERE hostname = ?
+                ''', (device_info.get('hostname'),))
+                
+                exists = cursor.fetchone() is not None
+                
+                if exists:
+                    # Update existing device
+                    cursor.execute('''
+                        UPDATE devices SET
+                            ip = COALESCE(?, ip),
+                            serial_number = COALESCE(?, serial_number),
+                            device_type = COALESCE(?, device_type),
+                            version = COALESCE(?, version),
+                            platform = COALESCE(?, platform),
+                            rommon = COALESCE(?, rommon),
+                            config_register = COALESCE(?, config_register),
+                            mac_address = COALESCE(?, mac_address),
+                            uptime = COALESCE(?, uptime),
+                            last_crawled = ?
+                        WHERE hostname = ?
+                    ''', (
+                        device_info.get('ip'),
+                        device_info.get('serial_number'),
+                        device_info.get('device_type'),
+                        device_info.get('version'),
+                        device_info.get('platform'),
+                        device_info.get('rommon'),
+                        device_info.get('config_register'),
+                        device_info.get('mac_address'),
+                        device_info.get('uptime'),
+                        datetime.now(),
+                        device_info.get('hostname')
+                    ))
+                    self.logger.info(f"Updated device: {device_info.get('hostname')}")
+                else:
+                    # Insert new device
+                    cursor.execute('''
+                        INSERT INTO devices (
+                            hostname, ip, serial_number, device_type, version,
+                            platform, rommon, config_register, mac_address, uptime,
+                            last_crawled
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        device_info.get('hostname'),
+                        device_info.get('ip'),
+                        device_info.get('serial_number'),
+                        device_info.get('device_type'),
+                        device_info.get('version'),
+                        device_info.get('platform'),
+                        device_info.get('rommon'),
+                        device_info.get('config_register'),
+                        device_info.get('mac_address'),
+                        device_info.get('uptime'),
+                        datetime.now()
+                    ))
+                    self.logger.info(f"Added new device: {device_info.get('hostname')}")
+                
+                conn.commit()
+        except sqlite3.Error as e:
+            self.logger.error(f"Database error: {str(e)}")
+            raise
 
     def add_to_queue(self, hostname: str):
         """Add a device to the crawl queue"""

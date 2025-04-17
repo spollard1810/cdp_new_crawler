@@ -122,14 +122,14 @@ class NetworkDevice:
             # Format the device info for inventory
             device_info = {
                 'hostname': version_info.get('HOSTNAME', self.hostname),
-                'ip': self.mgmt_ip,  # Use management IP
-                'serial_number': version_info.get('SERIAL', [''])[0],  # Get first serial number
+                'ip': self.mgmt_ip,
+                'serial_number': version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else '',
                 'device_type': self.device_type,
                 'version': version_info.get('VERSION', ''),
-                'platform': version_info.get('HARDWARE', [''])[0],  # Get first hardware platform
+                'platform': version_info.get('HARDWARE', [''])[0] if version_info.get('HARDWARE') else '',
                 'rommon': version_info.get('RUNNING_IMAGE', ''),
                 'config_register': version_info.get('CONFIG_REGISTER', ''),
-                'mac_address': version_info.get('MAC_ADDRESS', [''])[0],  # Get first MAC address
+                'mac_address': version_info.get('MAC_ADDRESS', [''])[0] if version_info.get('MAC_ADDRESS') else '',
                 'uptime': version_info.get('UPTIME', ''),
                 'last_crawled': datetime.now().isoformat()
             }

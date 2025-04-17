@@ -123,20 +123,18 @@ class NetworkCrawler:
             # Step 2: Clean hostname before storing
             device_info['hostname'] = self._clean_hostname(device_info['hostname'])
             
-            # Step 3: Store device in database
-            self.db.add_device(device_info)
-            self.logger.info(f"Added device info for {hostname}")
-            
-            # Step 4: Only after successful storage, get CDP neighbors
+            # Step 3: Get CDP neighbors
             self.logger.info(f"Getting CDP neighbors from {hostname}")
             neighbors = device.get_cdp_neighbors()
             if not neighbors:
                 self.logger.warning(f"No CDP neighbors found for {hostname}")
+                # Even if no neighbors, we should still add the device to DB
+                self.db.add_device(device_info)
                 return []
                 
             self.logger.info(f"Found {len(neighbors)} neighbors for {hostname}")
             
-            # Step 5: Process and add neighbors to queue
+            # Step 4: Process and add neighbors to queue
             valid_neighbors = []
             for neighbor in neighbors:
                 # Skip if not a valid neighbor dictionary
@@ -161,12 +159,16 @@ class NetworkCrawler:
                     self.db.add_to_queue(clean_neighbor)
                     self.logger.debug(f"Added neighbor to queue: {clean_neighbor} (IP: {neighbor.get('ip', 'N/A')})")
             
+            # Step 5: Only after processing neighbors, add the device to DB
+            self.db.add_device(device_info)
+            self.logger.info(f"Added device info for {hostname}")
+            
             self.logger.info(f"Added {len(valid_neighbors)} valid neighbors to queue")
             return valid_neighbors
             
         except Exception as e:
             self.logger.error(f"Error processing device {hostname}: {str(e)}")
-            self.logger.error(traceback.format_exc())
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
             return []
         finally:
             device.disconnect()
