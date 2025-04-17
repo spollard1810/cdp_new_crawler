@@ -46,25 +46,64 @@ class DeviceDatabase:
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
+            # First check if device exists
             cursor.execute('''
-                INSERT OR IGNORE INTO devices (
-                    hostname, ip, serial_number, device_type, version,
-                    platform, rommon, config_register, mac_address, uptime,
-                    last_crawled
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ''', (
-                device_info.get('hostname'),
-                device_info.get('ip'),
-                device_info.get('serial_number'),
-                device_info.get('device_type'),
-                device_info.get('version'),
-                device_info.get('platform'),
-                device_info.get('rommon'),
-                device_info.get('config_register'),
-                device_info.get('mac_address'),
-                device_info.get('uptime'),
-                datetime.now()
-            ))
+                SELECT 1 FROM devices WHERE hostname = ?
+            ''', (device_info.get('hostname'),))
+            
+            exists = cursor.fetchone() is not None
+            
+            if exists:
+                # Update existing device
+                cursor.execute('''
+                    UPDATE devices SET
+                        ip = ?,
+                        serial_number = ?,
+                        device_type = ?,
+                        version = ?,
+                        platform = ?,
+                        rommon = ?,
+                        config_register = ?,
+                        mac_address = ?,
+                        uptime = ?,
+                        last_crawled = ?
+                    WHERE hostname = ?
+                ''', (
+                    device_info.get('ip'),
+                    device_info.get('serial_number'),
+                    device_info.get('device_type'),
+                    device_info.get('version'),
+                    device_info.get('platform'),
+                    device_info.get('rommon'),
+                    device_info.get('config_register'),
+                    device_info.get('mac_address'),
+                    device_info.get('uptime'),
+                    datetime.now(),
+                    device_info.get('hostname')
+                ))
+                print(f"Updated device: {device_info.get('hostname')}")
+            else:
+                # Insert new device
+                cursor.execute('''
+                    INSERT INTO devices (
+                        hostname, ip, serial_number, device_type, version,
+                        platform, rommon, config_register, mac_address, uptime,
+                        last_crawled
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    device_info.get('hostname'),
+                    device_info.get('ip'),
+                    device_info.get('serial_number'),
+                    device_info.get('device_type'),
+                    device_info.get('version'),
+                    device_info.get('platform'),
+                    device_info.get('rommon'),
+                    device_info.get('config_register'),
+                    device_info.get('mac_address'),
+                    device_info.get('uptime'),
+                    datetime.now()
+                ))
+                print(f"Added new device: {device_info.get('hostname')}")
             
             conn.commit()
 

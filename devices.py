@@ -4,6 +4,7 @@ from parser import CommandParser
 import re
 import logging
 import traceback
+from datetime import datetime
 
 class NetworkDevice:
     def __init__(self, hostname: str, username: str, password: str, device_type: str = 'cisco_ios', mgmt_ip: str = None):
@@ -121,18 +122,23 @@ class NetworkDevice:
             # Format the device info for inventory
             device_info = {
                 'hostname': version_info.get('HOSTNAME', self.hostname),
-                'hardware': version_info.get('HARDWARE', []),  # Now a list
+                'ip': self.mgmt_ip,  # Use management IP
+                'serial_number': version_info.get('SERIAL', [''])[0],  # Get first serial number
+                'device_type': self.device_type,
                 'version': version_info.get('VERSION', ''),
-                'serial': version_info.get('SERIAL', []),  # Now a list
-                'uptime': version_info.get('UPTIME', ''),
-                'software_image': version_info.get('SOFTWARE_IMAGE', ''),
-                'running_image': version_info.get('RUNNING_IMAGE', ''),
+                'platform': version_info.get('HARDWARE', [''])[0],  # Get first hardware platform
+                'rommon': version_info.get('RUNNING_IMAGE', ''),
                 'config_register': version_info.get('CONFIG_REGISTER', ''),
-                'mac_addresses': version_info.get('MAC_ADDRESS', []),  # Now a list
-                'reload_reason': version_info.get('RELOAD_REASON', ''),
-                'mgmt_ip': self.mgmt_ip  # Add management IP to device info
+                'mac_address': version_info.get('MAC_ADDRESS', [''])[0],  # Get first MAC address
+                'uptime': version_info.get('UPTIME', ''),
+                'last_crawled': datetime.now().isoformat()
             }
-            self.logger.debug(f"Device info for {self.hostname}: {device_info}")
+            
+            # Log the collected device info
+            self.logger.debug(f"Collected device info for {self.hostname}:")
+            for key, value in device_info.items():
+                self.logger.debug(f"  {key}: {value}")
+            
             return device_info
         except Exception as e:
             self.logger.error(f"Error getting device info from {self.hostname}: {str(e)}")
