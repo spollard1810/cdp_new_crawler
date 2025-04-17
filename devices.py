@@ -119,6 +119,14 @@ class NetworkDevice:
             show_version = self.send_command('show version')
             version_info = self.parser.parse_show_version(show_version)
             
+            # If parsing failed, try NX-OS format
+            if not version_info.get('HARDWARE') or not version_info.get('SERIAL'):
+                self.logger.info(f"Initial parsing failed, trying NX-OS format for {self.hostname}")
+                # Try NX-OS specific parsing
+                nxos_info = self._parse_nxos_version(show_version)
+                if nxos_info:
+                    version_info = nxos_info
+            
             # Format the device info for inventory - only essential fields
             device_info = {
                 'hostname': self.hostname,  # Use the hostname we already have
@@ -138,6 +146,40 @@ class NetworkDevice:
             self.logger.error(f"Error getting device info from {self.hostname}: {str(e)}")
             self.logger.error(f"Traceback: {traceback.format_exc()}")
             raise
+
+    def _parse_nxos_version(self, show_version_output: str) -> Dict:
+        """Parse NX-OS show version output"""
+        try:
+            self.logger.info("Attempting NX-OS version parsing")
+            
+            # Initialize empty values
+            hardware = ''
+            serial = ''
+            
+            # Look for NX-OS specific patterns
+            hardware_match = re.search(r'cisco\s+(\S+)\s+Chassis', show_version_output)
+            if hardware_match:
+                hardware = hardware_match.group(1)
+            
+            serial_match = re.search(r'Processor\s+board\s+ID\s+(\S+)', show_version_output)
+            if serial_match:
+                serial = serial_match.group(1)
+            
+            # If we found both values, return them
+            if hardware and serial:
+                self.logger.info(f"Successfully parsed NX-OS version info: hardware={hardware}, serial={serial}")
+                return {
+                    'HARDWARE': [hardware],
+                    'SERIAL': [serial]
+                }
+            
+            self.logger.warning("Failed to parse NX-OS version info")
+            return {}
+            
+        except Exception as e:
+            self.logger.error(f"Error parsing NX-OS version: {str(e)}")
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
+            return {}
 
     def get_cdp_neighbors(self) -> List[Dict]:
         """Get CDP neighbor information"""
