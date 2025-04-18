@@ -53,44 +53,68 @@ class CommandParser:
             self.logger.error(f"Traceback: {traceback.format_exc()}")
             return []
 
-    def parse_show_version(self, show_version_output: str, device_type: str = 'cisco_ios') -> Dict:
-        """Parse 'show version' command output"""
+    def parse_show_version(self, output: str, device_type: str = 'cisco_ios') -> Dict:
+        """Parse show version output using TextFSM template"""
+        self.logger.info("Starting to parse show version output")
         try:
-            self.logger.info("Starting to parse show version output")
-            self.logger.debug(f"Raw show version output: {show_version_output}")
+            # Get the appropriate template path
+            template_path = self._get_template_path('show_version', device_type)
             
-            parsed = self._parse_with_template(show_version_output, 'show_version', device_type)
-            self.logger.info(f"Raw parsed output: {parsed}")
+            # Parse the output
+            with open(template_path) as f:
+                template = TextFSM(f)
+                result = template.ParseText(output)
+                
+            self.logger.info(f"Raw parsed output: {result}")
             
-            if not parsed:
-                self.logger.warning("No data was parsed from show version output")
-                return {}
-            
-            # Get the first (and should be only) result
-            result = parsed[0]
-            self.logger.info(f"First parsed result: {result}")
-            
-            # Initialize empty values
-            hardware = ''
-            serial = ''
-            
-            # The format we're seeing is: ['C8300-2N2S-4T2X', '*FLM273210MF*']
-            if len(result) >= 2:
-                hardware = result[0].strip('*')
-                serial = result[1].strip('*')
-            
-            # Create the parsed info dictionary with the values
-            parsed_info = {
-                'HARDWARE': [hardware] if hardware else [],
-                'SERIAL': [serial] if serial else []
+            # Initialize empty dictionary for parsed data
+            parsed_data = {
+                'HARDWARE': '',
+                'SERIAL': ''
             }
             
-            self.logger.info(f"Final parsed info: {parsed_info}")
-            return parsed_info
+            # Handle different return types from TextFSM
+            if isinstance(result, list) and result:
+                if isinstance(result[0], dict):
+                    # Case 1: List of dictionaries [{'HARDWARE': 'C8300-2N2S-4T2X', 'SERIAL': 'FLM28291QQ'}]
+                    self.logger.info(f"Case 1: List of dictionaries - First result: {result[0]}")
+                    parsed_data['HARDWARE'] = result[0].get('HARDWARE', '').strip('*')
+                    parsed_data['SERIAL'] = result[0].get('SERIAL', '').strip('*')
+                    
+                elif isinstance(result[0], tuple):
+                    # Case 2: List of tuples [('HARDWARE', 'C9606R*'), ('SERIAL', 'FXS2509Q208')]
+                    self.logger.info(f"Case 2: List of tuples - Converting to dict")
+                    temp_dict = dict(result)
+                    parsed_data['HARDWARE'] = temp_dict.get('HARDWARE', '').strip('*')
+                    parsed_data['SERIAL'] = temp_dict.get('SERIAL', '').strip('*')
+                    
+                elif isinstance(result[0], list):
+                    # Case 3: List of lists [['C8300-2N2S-4T2X', 'FLM28291QQ']]
+                    self.logger.info(f"Case 3: List of lists - First result: {result[0]}")
+                    if len(result[0]) >= 2:
+                        parsed_data['HARDWARE'] = str(result[0][0]).strip('*')
+                        parsed_data['SERIAL'] = str(result[0][1]).strip('*')
+                        
+            elif isinstance(result, dict):
+                # Case 4: Single dictionary {'HARDWARE': 'C8300-2N2S-4T2X', 'SERIAL': 'FLM28291QQ'}
+                self.logger.info(f"Case 4: Single dictionary - Result: {result}")
+                parsed_data['HARDWARE'] = result.get('HARDWARE', '').strip('*')
+                parsed_data['SERIAL'] = result.get('SERIAL', '').strip('*')
+                
+            else:
+                self.logger.warning(f"Unexpected result type: {type(result)}")
+                
+            # Clean up any remaining quotes or asterisks
+            parsed_data['HARDWARE'] = parsed_data['HARDWARE'].strip("'*")
+            parsed_data['SERIAL'] = parsed_data['SERIAL'].strip("'*")
+            
+            self.logger.info(f"Final parsed data: {parsed_data}")
+            return parsed_data
+            
         except Exception as e:
             self.logger.error(f"Error parsing show version: {str(e)}")
             self.logger.error(f"Traceback: {traceback.format_exc()}")
-            return {}
+            return {'HARDWARE': '', 'SERIAL': ''}
 
     def parse_cdp_neighbors(self, cdp_output: str, device_type: str = 'cisco_ios') -> List[Dict]:
         """Parse 'show cdp neighbors detail' command output"""
