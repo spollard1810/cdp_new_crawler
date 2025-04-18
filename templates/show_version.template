@@ -7,3 +7,6 @@ Start
   ^.*System\s+serial\s+number\s*:\s*${SERIAL}
   ^.*\[°\s+${HARDWARE}\*\*\] -> Continue
   ^.*\[°\s+${SERIAL}'\s*\] -> Continue
+  ^.*Serial\s+number\s*:\s*${SERIAL} -> Record
+  ^.*System\s+serial\s+number\s*:\s*${SERIAL} -> Record
+  ^.*Processor\s+board\s+ID\s+${SERIAL} -> Record

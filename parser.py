@@ -108,6 +108,22 @@ class CommandParser:
             parsed_data['HARDWARE'] = parsed_data['HARDWARE'].strip("'*")
             parsed_data['SERIAL'] = parsed_data['SERIAL'].strip("'*")
             
+            # If we still don't have a serial number, try to extract it directly from the output
+            if not parsed_data['SERIAL']:
+                self.logger.info("No serial number found in parsed data, trying direct extraction")
+                serial_patterns = [
+                    r'Processor\s+board\s+ID\s+(\S+)',
+                    r'System\s+serial\s+number\s*:\s*(\S+)',
+                    r'Serial\s+number\s*:\s*(\S+)'
+                ]
+                
+                for pattern in serial_patterns:
+                    match = re.search(pattern, output)
+                    if match:
+                        parsed_data['SERIAL'] = match.group(1).strip("'*")
+                        self.logger.info(f"Found serial number using pattern {pattern}: {parsed_data['SERIAL']}")
+                        break
+            
             self.logger.info(f"Final parsed data: {parsed_data}")
             return parsed_data
             

@@ -206,12 +206,17 @@ class NetworkDevice:
                             serial = value.strip("'*")
                 elif version_info and isinstance(version_info[0], dict):
                     # Handle list of dictionaries (NX-OS style)
-                    hardware = version_info[0].get('Hardware', '').strip('*')
-                    serial = version_info[0].get('Serial', '')
+                    hardware = version_info[0].get('HARDWARE', '').strip('*')
+                    serial = version_info[0].get('SERIAL', '').strip('*')
+                elif version_info and isinstance(version_info[0], list):
+                    # Handle list of lists [['C8300-2N2S-4T2X', 'FLM28291QQ']]
+                    if len(version_info[0]) >= 2:
+                        hardware = str(version_info[0][0]).strip('*')
+                        serial = str(version_info[0][1]).strip('*')
             elif isinstance(version_info, dict):
                 # Handle single dictionary (IOS style)
-                hardware = version_info.get('HARDWARE', [''])[0].strip('*') if version_info.get('HARDWARE') else ''
-                serial = version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else ''
+                hardware = version_info.get('HARDWARE', '').strip('*')
+                serial = version_info.get('SERIAL', '').strip('*')
             
             # Clean up any remaining quotes or asterisks
             hardware = hardware.strip("'*")
