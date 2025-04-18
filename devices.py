@@ -193,17 +193,29 @@ class NetworkDevice:
             version_info = self.parser.parse_show_version(show_version, self.device_type)
             
             # Handle different return types from TextFSM parsing
-            if isinstance(version_info, list) and version_info:
-                # List of dictionaries (NX-OS style)
-                hardware = version_info[0].get('Hardware', '').strip('*')
-                serial = version_info[0].get('Serial', '')
+            hardware = ''
+            serial = ''
+            
+            if isinstance(version_info, list):
+                if version_info and isinstance(version_info[0], tuple):
+                    # Handle list of tuples (e.g., [('HARDWARE', 'C9606R*'), ('SERIAL', 'FXS2509Q208')])
+                    for key, value in version_info:
+                        if key == 'HARDWARE':
+                            hardware = value.strip("'*")  # Remove quotes and asterisks
+                        elif key == 'SERIAL':
+                            serial = value.strip("'*")
+                elif version_info and isinstance(version_info[0], dict):
+                    # Handle list of dictionaries (NX-OS style)
+                    hardware = version_info[0].get('Hardware', '').strip('*')
+                    serial = version_info[0].get('Serial', '')
             elif isinstance(version_info, dict):
-                # Single dictionary (IOS style)
+                # Handle single dictionary (IOS style)
                 hardware = version_info.get('HARDWARE', [''])[0].strip('*') if version_info.get('HARDWARE') else ''
                 serial = version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else ''
-            else:
-                hardware = ''
-                serial = ''
+            
+            # Clean up any remaining quotes or asterisks
+            hardware = hardware.strip("'*")
+            serial = serial.strip("'*")
             
             # Format the device info for inventory
             device_info = {
