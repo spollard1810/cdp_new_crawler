@@ -192,15 +192,26 @@ class NetworkDevice:
             # Parse based on device type using appropriate template
             version_info = self.parser.parse_show_version(show_version, self.device_type)
             
-            # Format the device info for inventory - only essential fields
-            device_info = {
-                'hostname': self.hostname,  # Use the hostname we already have
-                'ip': self.mgmt_ip,
-                'serial_number': version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else '',
-                'platform': version_info.get('HARDWARE', [''])[0] if version_info.get('HARDWARE') else '',
-                'device_type': self.device_type,
-                'last_crawled': datetime.now().isoformat()
-            }
+            # Format the device info for inventory - handle NX-OS differently
+            if self.device_type == 'cisco_nxos':
+                device_info = {
+                    'hostname': self.hostname,
+                    'ip': self.mgmt_ip,
+                    'serial_number': '',  # NX-OS template doesn't capture serial yet
+                    'platform': version_info[0].get('Hardware', '') if version_info else '',  # NX-OS uses 'Hardware' instead of 'HARDWARE'
+                    'device_type': self.device_type,
+                    'last_crawled': datetime.now().isoformat()
+                }
+            else:
+                # Handle IOS/IOS-XE devices
+                device_info = {
+                    'hostname': self.hostname,
+                    'ip': self.mgmt_ip,
+                    'serial_number': version_info.get('SERIAL', [''])[0] if version_info.get('SERIAL') else '',
+                    'platform': version_info.get('HARDWARE', [''])[0] if version_info.get('HARDWARE') else '',
+                    'device_type': self.device_type,
+                    'last_crawled': datetime.now().isoformat()
+                }
             
             # Log the collected device info
             self.logger.info(f"Collected device info for {self.hostname}:")
