@@ -11,7 +11,7 @@ credentials:
 
 # Optional settings
 settings:
-  max_depth: 5  # Maximum depth of CDP crawl
+  max_depth: 32  # Maximum depth of CDP crawl
   timeout: 20   # Connection timeout in seconds
   exclude_hosts:
     - "exampleswitch.stephen.com"

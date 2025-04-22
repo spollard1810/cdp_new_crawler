@@ -1,0 +1,1053 @@
+2025-04-22 22:24:14,291 - crawler - INFO - Initialized crawler with seed device: 192.168.1.1
+2025-04-22 22:24:14,292 - crawler - INFO - Exclude hosts: ['exampleswitch.stephen.com', 'stephen.com']
+2025-04-22 22:24:14,292 - crawler - INFO - Include only: []
+2025-04-22 22:24:17,962 - crawler - INFO - Starting crawler with 5 workers
+2025-04-22 22:24:17,976 - crawler - INFO - Added seed device 192.168.1.1 to queue
+2025-04-22 22:24:17,977 - crawler - INFO - Started worker thread Worker-0
+2025-04-22 22:24:17,977 - crawler - INFO - Started worker thread Worker-1
+2025-04-22 22:24:17,977 - crawler - INFO - Started worker thread Worker-2
+2025-04-22 22:24:17,978 - crawler - INFO - Started worker thread Worker-3
+2025-04-22 22:24:17,978 - crawler - INFO - Started worker thread Worker-4
+2025-04-22 22:24:17,983 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:24:17,984 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:24:17,984 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:24:17,984 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:24:18,001 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:24:18,002 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:24:18,002 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:24:18,002 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:24:18,031 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:24:18,032 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:24:18,032 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:24:18,032 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:24:21,232 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,232 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,233 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,233 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:24:21,233 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:24:21,249 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:24:21,250 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:24:21,362 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,362 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,363 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,363 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:24:21,363 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:24:21,370 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:24:21,371 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:24:21,377 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,378 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,378 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:24:21,378 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:24:21,378 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:24:21,385 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:24:21,386 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:13,238 - crawler - INFO - Initialized crawler with seed device: 192.168.1.1
+2025-04-22 22:25:13,238 - crawler - INFO - Exclude hosts: ['exampleswitch.stephen.com', 'stephen.com']
+2025-04-22 22:25:13,238 - crawler - INFO - Include only: []
+2025-04-22 22:25:14,775 - crawler - INFO - Starting crawler with 32 workers
+2025-04-22 22:25:14,789 - crawler - INFO - Added seed device 192.168.1.1 to queue
+2025-04-22 22:25:14,790 - crawler - INFO - Started worker thread Worker-0
+2025-04-22 22:25:14,790 - crawler - INFO - Started worker thread Worker-1
+2025-04-22 22:25:14,790 - crawler - INFO - Started worker thread Worker-2
+2025-04-22 22:25:14,791 - crawler - INFO - Started worker thread Worker-3
+2025-04-22 22:25:14,791 - crawler - INFO - Started worker thread Worker-4
+2025-04-22 22:25:14,791 - crawler - INFO - Started worker thread Worker-5
+2025-04-22 22:25:14,792 - crawler - INFO - Started worker thread Worker-6
+2025-04-22 22:25:14,792 - crawler - INFO - Started worker thread Worker-7
+2025-04-22 22:25:14,792 - crawler - INFO - Started worker thread Worker-8
+2025-04-22 22:25:14,793 - crawler - INFO - Started worker thread Worker-9
+2025-04-22 22:25:14,793 - crawler - INFO - Started worker thread Worker-10
+2025-04-22 22:25:14,793 - crawler - INFO - Started worker thread Worker-11
+2025-04-22 22:25:14,794 - crawler - INFO - Started worker thread Worker-12
+2025-04-22 22:25:14,794 - crawler - INFO - Started worker thread Worker-13
+2025-04-22 22:25:14,794 - crawler - INFO - Started worker thread Worker-14
+2025-04-22 22:25:14,795 - crawler - INFO - Started worker thread Worker-15
+2025-04-22 22:25:14,795 - crawler - INFO - Started worker thread Worker-16
+2025-04-22 22:25:14,795 - crawler - INFO - Started worker thread Worker-17
+2025-04-22 22:25:14,795 - crawler - INFO - Started worker thread Worker-18
+2025-04-22 22:25:14,796 - crawler - INFO - Started worker thread Worker-19
+2025-04-22 22:25:14,796 - crawler - INFO - Started worker thread Worker-20
+2025-04-22 22:25:14,796 - crawler - INFO - Started worker thread Worker-21
+2025-04-22 22:25:14,796 - crawler - INFO - Started worker thread Worker-22
+2025-04-22 22:25:14,797 - crawler - INFO - Started worker thread Worker-23
+2025-04-22 22:25:14,797 - crawler - INFO - Started worker thread Worker-24
+2025-04-22 22:25:14,797 - crawler - INFO - Started worker thread Worker-25
+2025-04-22 22:25:14,797 - crawler - INFO - Started worker thread Worker-26
+2025-04-22 22:25:14,798 - crawler - INFO - Started worker thread Worker-27
+2025-04-22 22:25:14,798 - crawler - INFO - Started worker thread Worker-28
+2025-04-22 22:25:14,798 - crawler - INFO - Started worker thread Worker-29
+2025-04-22 22:25:14,799 - crawler - INFO - Started worker thread Worker-30
+2025-04-22 22:25:14,799 - crawler - INFO - Started worker thread Worker-31
+2025-04-22 22:25:14,948 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:14,949 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:14,949 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:14,949 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:14,975 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:14,975 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:14,975 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:14,976 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:14,976 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:14,976 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:14,976 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:14,976 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,006 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,006 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,006 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,006 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,037 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,037 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,037 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,037 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,098 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,099 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,099 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,099 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,127 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,129 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,129 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,129 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,129 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,130 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,130 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,131 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,131 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,131 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,131 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,132 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,132 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,132 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,132 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,132 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,132 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,132 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,138 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,139 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,141 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,142 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,142 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,142 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,143 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,144 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,145 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,145 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,145 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,145 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,145 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,145 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,145 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,146 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,146 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,146 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,146 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,146 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,146 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,147 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,147 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,147 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,147 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,157 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,158 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,158 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,159 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,160 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,161 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,162 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,163 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,164 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,165 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,166 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,167 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,167 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,167 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,167 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,167 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,167 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,168 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,168 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,168 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,168 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,168 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,168 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,168 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,168 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,169 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,169 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,176 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,176 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,176 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,176 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,182 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,182 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,183 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,184 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,185 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,185 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,185 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,185 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,185 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,185 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,185 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,185 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,192 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,193 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,193 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,193 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,208 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,208 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,208 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,209 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,210 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,211 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,211 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,211 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,211 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,211 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,212 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,223 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,244 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,244 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,244 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,244 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,260 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,260 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,260 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,260 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,260 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,261 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,262 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,262 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,263 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,263 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,263 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,263 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,270 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,270 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,270 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,270 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,271 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,271 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,271 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,271 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,277 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,277 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,278 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,279 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,280 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,281 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,282 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,283 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,284 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,284 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,284 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,284 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,284 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,284 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,284 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,284 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,284 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,285 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,285 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,286 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,305 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,306 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,316 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,317 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,354 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,354 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,354 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,354 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,379 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,380 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,380 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,380 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,380 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,380 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,381 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,382 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,382 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,383 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,383 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,383 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,383 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,389 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,390 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,395 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,396 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,396 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,396 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,397 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,398 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,398 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,398 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,398 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,399 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,399 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,416 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,416 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,416 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,417 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,425 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,425 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,425 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,426 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,427 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,428 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,428 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,428 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,428 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,428 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,442 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,442 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,442 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,442 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,457 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,457 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,458 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,459 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,460 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,460 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,460 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,460 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,460 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,460 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,460 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,460 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,473 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,474 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,511 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,511 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,511 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,511 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,525 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,526 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,526 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,527 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,528 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,529 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,529 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,529 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,529 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,529 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,541 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,543 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,568 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,569 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,583 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,599 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,600 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,620 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,621 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,621 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,621 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,628 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,629 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,629 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,629 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,629 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,629 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,629 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,630 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,630 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,630 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,630 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,630 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,630 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,630 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,630 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,631 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,632 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,632 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,632 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,632 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,632 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,632 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,632 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,632 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,645 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,645 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,646 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,647 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,648 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,648 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,648 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,648 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,648 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,648 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,648 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,648 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,649 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,650 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,681 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,682 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,682 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,682 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,691 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,691 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,692 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,692 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,692 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,692 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,692 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,693 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,694 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,694 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,694 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,694 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,694 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,695 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,711 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,712 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,745 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,745 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,745 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,745 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,771 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,771 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,772 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,772 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,772 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,772 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,772 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,773 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,774 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,776 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,776 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,776 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,776 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,777 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,777 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,777 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,777 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,777 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,777 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,777 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,777 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,778 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,779 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,779 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,779 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,780 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,780 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,780 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,780 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,780 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,780 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,781 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,782 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,782 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,782 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,782 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,782 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,782 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,782 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,783 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,783 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,783 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,783 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,785 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,802 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,817 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,817 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,848 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,870 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,870 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,870 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,870 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,877 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 663, in _read_timeout
+2025-04-22 22:25:15,878 - paramiko.transport - ERROR -     x = self.__socket.recv(128)
+2025-04-22 22:25:15,879 - paramiko.transport - ERROR - ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,879 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,879 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,879 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,880 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,880 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,880 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,880 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,880 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,880 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,880 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,881 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,881 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,881 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner[WinError 10054] An existing connection was forcibly closed by the remote host
+2025-04-22 22:25:15,881 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,881 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,881 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,881 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,881 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,881 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,900 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,901 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:15,932 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,932 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,933 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,933 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,942 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:15,942 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:15,943 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,943 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:15,958 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,958 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:15,959 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,960 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:15,961 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,962 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,963 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:15,963 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,963 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:15,963 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,963 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,964 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:15,965 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,965 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:15,965 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,965 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:15,965 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,965 - paramiko.transport - ERROR - 
+2025-04-22 22:25:15,965 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,966 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,966 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,966 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,966 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,966 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:15,966 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,966 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:15,966 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,966 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:15,978 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:15,979 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,036 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,037 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,081 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,083 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,119 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:16,119 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:16,119 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,119 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,128 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:16,128 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,129 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:16,129 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:16,129 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:16,129 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:16,129 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:16,129 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:16,130 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:16,130 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:16,130 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,130 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:16,130 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,130 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,131 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:16,131 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:16,131 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:16,131 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:16,131 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:16,131 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:16,132 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:16,132 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:16,132 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,132 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,132 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,133 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,133 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:16,133 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:16,150 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,151 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,162 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,182 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:16,182 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:16,182 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,182 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,195 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:16,196 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,196 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:16,196 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:16,196 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:16,197 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:16,197 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:16,197 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:16,197 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:16,197 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:16,197 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,198 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:16,198 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,198 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,198 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:16,198 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:16,198 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,198 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:16,199 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:16,199 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:16,199 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:16,199 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:16,199 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:16,199 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,199 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,199 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,200 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,200 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:16,200 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,200 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:16,200 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,201 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,228 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:16,228 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:16,228 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,229 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,244 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:16,244 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,244 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:16,245 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:16,246 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,246 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,246 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,246 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,246 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:16,246 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:16,252 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,269 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,331 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,410 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:16,507 - crawler - INFO - Processing device: 192.168.1.1
+2025-04-22 22:25:16,507 - crawler - INFO - Attempting to connect to 192.168.1.1 via hostname
+2025-04-22 22:25:16,507 - devices - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,507 - connect - INFO - Attempting to connect to 192.168.1.1
+2025-04-22 22:25:16,533 - paramiko.transport - ERROR - Exception (client): Error reading SSH protocol banner
+2025-04-22 22:25:16,535 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,535 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2369, in _check_banner
+2025-04-22 22:25:16,535 - paramiko.transport - ERROR -     buf = self.packetizer.readline(timeout)
+2025-04-22 22:25:16,536 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 395, in readline
+2025-04-22 22:25:16,536 - paramiko.transport - ERROR -     buf += self._read_timeout(timeout)
+2025-04-22 22:25:16,536 - paramiko.transport - ERROR -            ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+2025-04-22 22:25:16,536 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\packet.py", line 665, in _read_timeout
+2025-04-22 22:25:16,536 - paramiko.transport - ERROR -     raise EOFError()
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR - EOFError
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR - During handling of the above exception, another exception occurred:
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR - Traceback (most recent call last):
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2185, in run
+2025-04-22 22:25:16,537 - paramiko.transport - ERROR -     self._check_banner()
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR -     ~~~~~~~~~~~~~~~~~~^^
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR -   File "C:\Users\Main\source\repos\python\cdp_new_crawler\.venv\Lib\site-packages\paramiko\transport.py", line 2373, in _check_banner
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR -     raise SSHException(
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR -         "Error reading SSH protocol banner" + str(e)
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR -     )
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR - paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+2025-04-22 22:25:16,538 - paramiko.transport - ERROR - 
+2025-04-22 22:25:16,539 - connect - ERROR - Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,539 - devices - WARNING - Failed to connect to 192.168.1.1: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,539 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Timeout connecting to 192.168.1.1
+2025-04-22 22:25:16,539 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:16,539 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:16,553 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:16,554 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:20,173 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,173 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,173 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,173 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:20,174 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:20,179 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:20,180 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:20,213 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,213 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,213 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,213 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:20,214 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:20,226 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:20,227 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:20,263 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,263 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,263 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,263 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:20,264 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:20,321 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:20,322 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:20,343 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,343 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,343 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,343 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:20,343 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:20,352 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:20,352 - crawler - INFO - Queue status: 0 pending, 1 processed
+2025-04-22 22:25:20,402 - connect - ERROR - Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,402 - devices - WARNING - Failed to connect to 192.168.1.1: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,402 - crawler - WARNING - Failed to connect to 192.168.1.1 via hostname: Authentication failed for 192.168.1.1
+2025-04-22 22:25:20,403 - crawler - ERROR - No management IP available for 192.168.1.1, skipping
+2025-04-22 22:25:20,403 - devices - INFO - Disconnected from 192.168.1.1
+2025-04-22 22:25:20,414 - crawler - INFO - Marked 192.168.1.1 as processed
+2025-04-22 22:25:20,415 - crawler - INFO - Queue status: 0 pending, 1 processed

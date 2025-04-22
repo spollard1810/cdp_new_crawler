@@ -98,43 +98,38 @@ class NetworkDevice:
         self.logger.warning("Could not determine device type from CDP")
         return None
 
-    def connect(self) -> None:
+    def connect(self):
         """Establish connection to the device, trying hostname first then mgmt IP"""
         self.logger.info(f"Attempting to connect to {self.hostname}")
         
-        try:
-            # Try hostname first
-            try:
-                self.logger.debug(f"Trying connection with hostname: {self.hostname}")
-                
-                # First try with the provided device type
-                self.connection = DeviceConnection(
-                    hostname=self.hostname,
-                    username=self.username,
-                    password=self.password,
-                    device_type=self.device_type
-                )
-                self.connection.connect()
-                self.logger.info(f"Successfully connected to {self.hostname} as {self.device_type}")
+        # First try with the provided device type
+        self.connection = DeviceConnection(
+            hostname=self.hostname,
+            username=self.username,
+            password=self.password,
+            device_type=self.device_type
+        )
+    
+        # Trye to connect to main if not connect try mgmt fall back
+        if not self.connection.connect():
+            self.logger.warning(f"Failed to connect to {self.hostname}: {str(e)}")
+            if not self.mgmt_ip:  # If no mgmt IP available, raise the original error
                 return
-                
-            except ConnectionError as e:
-                self.logger.warning(f"Failed to connect to {self.hostname}: {str(e)}")
-                if not self.mgmt_ip:  # If no mgmt IP available, raise the original error
-                    raise
-                
-                # Try mgmt IP as fallback
-                self.logger.debug(f"Trying fallback connection with mgmt IP: {self.mgmt_ip}")
-                self.connection = DeviceConnection(
-                    hostname=self.mgmt_ip,  # Use IP instead of hostname
-                    username=self.username,
-                    password=self.password,
-                    device_type=self.device_type
-                )
-                self.connection.connect()
-                self.logger.info(f"Successfully connected to {self.mgmt_ip}")
-        except Exception as e:
-            raise
+            
+            self.logger.debug(f"Trying fallback connection with mgmt IP: {self.mgmt_ip}")
+            self.connection = DeviceConnection(
+                hostname=self.mgmt_ip,  # Use IP instead of hostname
+                username=self.username,
+                password=self.password,
+                device_type=self.device_type
+            )
+            if not self.connection.connect():
+                self.logger.error("Failed fallback")    
+            self.logger.info(f"Successfully connected to {self.hostname} as {self.device_type}")
+            return
+
+        self.logger.info(f"Successfully connected to {self.mgmt_ip}")
+        return
 
     def disconnect(self) -> None:
         """Close the device connection"""

@@ -44,7 +44,9 @@ class DeviceConnection:
         self.logger = logging.getLogger(__name__)
         self.logger.debug(f"Initialized DeviceConnection for {hostname}")
 
-    def connect(self) -> None:
+    # Returns true if connects, false if something went wrong
+    # throws no exceptions
+    def connect(self) -> bool:
         """Establish SSH connection to the device"""
         self.logger.info(f"Attempting to connect to {self.hostname}")
         try:
@@ -69,16 +71,17 @@ class DeviceConnection:
                 self.connection.send_command("terminal length 0")
             
             self.logger.info(f"Successfully connected to {self.hostname}")
+            return True
         except NetMikoTimeoutException:
             self.logger.error(f"Timeout connecting to {self.hostname}")
-            raise ConnectionError(f"Timeout connecting to {self.hostname}")
+            return False
         except NetMikoAuthenticationException:
             self.logger.error(f"Authentication failed for {self.hostname}")
-            raise ConnectionError(f"Authentication failed for {self.hostname}")
+            return False
         except Exception as e:
             self.logger.error(f"Error connecting to {self.hostname}: {str(e)}")
             self.logger.error(f"Traceback: {traceback.format_exc()}")
-            raise ConnectionError(f"Error connecting to {self.hostname}: {str(e)}")
+            return False
 
     def disconnect(self) -> None:
         """Close the SSH connection"""

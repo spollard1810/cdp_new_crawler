@@ -93,6 +93,59 @@ class NetworkCrawler:
             self.workers.append(worker)
             self.logger.info(f"Started worker thread {worker.name}")
 
+    def _connect_device(self, device, hostname) -> bool:
+        try:
+            self.logger.info(f"Attempting to connect to {hostname} via hostname")
+            device.connect()
+            return True
+        except ConnectionError as e:
+            self.logger.warning(f"Failed to connect to {hostname} via hostname: {str(e)}")
+            # If we have a management IP, try that as fallback
+            if device.mgmt_ip:
+                self.logger.info(f"Attempting fallback connection to {hostname} via management IP: {device.mgmt_ip}")
+                device.connect()  # This will use the management IP as fallback
+                return True
+            else:
+                self.logger.error(f"No management IP available for {hostname}, skipping")
+                return False
+
+    # Checks if the neighbour is valid for processing based on the hostname and format      
+    def _is_neighbour_valid(self, neighbour, hostname)-> str:
+        if not isinstance(neighbour, dict):
+            self.logger.warning(f"Invalid neighbor format: {neighbour}")
+            return False
+            
+        # Get and clean the hostname
+        if not hostname:
+            self.logger.warning(f"Neighbor missing hostname: {neighbour}")
+            return False
+        return True
+
+    # trys to add neigbours to db
+    # Returns a list of all the valid neighbours
+    def _try_add_neighbours(self, neighbors) -> list:
+        valid_neighbors = []
+        for neighbor in neighbors:
+            neighbor_hostname = neighbor.get('hostname')
+            
+            if not self._is_neighbour_valid(neighbor, neighbor_hostname):
+                continue
+
+            clean_neighbor = self._clean_hostname(neighbor_hostname)
+            if self._should_process_hostname(clean_neighbor):
+                # Store both hostname and management IP for fallback
+                neighbor_info = {
+                    'hostname': clean_neighbor,
+                    'mgmt_ip': neighbor.get('ip', ''),  # Store the management IP for fallback
+                    'device_type': neighbor.get('device_type', self.device_type)  # Use detected type or fallback
+                }
+                valid_neighbors.append(neighbor_info)
+                self.db.add_to_queue(clean_neighbor)
+                self.logger.debug(f"Added neighbor to queue: {clean_neighbor} (IP: {neighbor.get('ip', 'N/A')}, Type: {neighbor_info['device_type']})")
+
+        return valid_neighbors
+
+
     def _process_device(self, hostname: str) -> List[str]:
         """Process a single device and return list of discovered neighbors"""
         self.logger.info(f"Processing device: {hostname}")
@@ -106,19 +159,10 @@ class NetworkCrawler:
         
         try:
             # First try connecting with hostname
-            try:
-                self.logger.info(f"Attempting to connect to {hostname} via hostname")
-                device.connect()
-            except ConnectionError as e:
+            if not self._connect_device(device, hostname=hostname):
                 self.logger.warning(f"Failed to connect to {hostname} via hostname: {str(e)}")
-                # If we have a management IP, try that as fallback
-                if device.mgmt_ip:
-                    self.logger.info(f"Attempting fallback connection to {hostname} via management IP: {device.mgmt_ip}")
-                    device.connect()  # This will use the management IP as fallback
-                else:
-                    self.logger.error(f"No management IP available for {hostname}, skipping")
-                    return []
-            
+                return []
+
             # Step 1: Get device info from show version
             self.logger.info(f"Getting device info from {hostname}")
             device_info = device.get_device_info()
@@ -128,7 +172,7 @@ class NetworkCrawler:
                 
             # Step 2: Clean hostname before storing
             device_info['hostname'] = self._clean_hostname(device_info['hostname'])
-            
+
             # Step 3: Get CDP neighbors
             self.logger.info(f"Getting CDP neighbors from {hostname}")
             neighbors = device.get_cdp_neighbors()
@@ -141,35 +185,12 @@ class NetworkCrawler:
             self.logger.info(f"Found {len(neighbors)} neighbors for {hostname}")
             
             # Step 4: Process and add neighbors to queue
-            valid_neighbors = []
-            for neighbor in neighbors:
-                # Skip if not a valid neighbor dictionary
-                if not isinstance(neighbor, dict):
-                    self.logger.warning(f"Invalid neighbor format: {neighbor}")
-                    continue
-                    
-                # Get and clean the hostname
-                neighbor_hostname = neighbor.get('hostname')
-                if not neighbor_hostname:
-                    self.logger.warning(f"Neighbor missing hostname: {neighbor}")
-                    continue
-                    
-                clean_neighbor = self._clean_hostname(neighbor_hostname)
-                if self._should_process_hostname(clean_neighbor):
-                    # Store both hostname and management IP for fallback
-                    neighbor_info = {
-                        'hostname': clean_neighbor,
-                        'mgmt_ip': neighbor.get('ip', ''),  # Store the management IP for fallback
-                        'device_type': neighbor.get('device_type', self.device_type)  # Use detected type or fallback
-                    }
-                    valid_neighbors.append(neighbor_info)
-                    self.db.add_to_queue(clean_neighbor)
-                    self.logger.debug(f"Added neighbor to queue: {clean_neighbor} (IP: {neighbor.get('ip', 'N/A')}, Type: {neighbor_info['device_type']})")
-            
+            valid_neighbors = self._try_add_neighbours(neighbors)
+
             # Step 5: Only after processing neighbors, add the device to DB
             self.db.add_device(device_info)
             self.logger.info(f"Added device info for {hostname}")
-            
+
             self.logger.info(f"Added {len(valid_neighbors)} valid neighbors to queue")
             return valid_neighbors
             
